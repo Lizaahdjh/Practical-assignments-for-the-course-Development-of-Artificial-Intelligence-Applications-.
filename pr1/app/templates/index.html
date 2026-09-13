@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    /* Перемикач мов у правому верхньому кутку */
+    .lang-switch {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      display: flex;
+      gap: 8px;
+    }
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+    .lang-btn.active, .lang-btn:hover {
+      background: rgba(255, 255, 255, 0.8);
+      color: #1a1a2e;
+    }
+  </style>
+</head>
+<body class="day">
+
+  <div class="lang-switch">
+    <button class="lang-btn active" onclick="setLanguage('uk')">UA 🇺🇦</button>
+    <button class="lang-btn" onclick="setLanguage('en')">UK 🇬🇧</button>
+  </div>
+
+  <div id="cloud-bg" class="cloud-bg"></div>
+  <div id="rain-container" class="rain-container"></div>
+
+  <div class="container">
+    <header>
+      <h1 id="t-title">Погода</h1>
+      <p class="subtitle" id="t-subtitle">Перевіряйте погоду в будь-якому куточку світу</p>
+    </header>
+
+    <div class="search-form">
+      <form id="weather-form">
+        <div class="input-group">
+          <input type="text" id="city-input" placeholder="Введіть назву міста..." required autocomplete="off">
+          <button type="submit" id="search-btn">Пошук</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="result">
+      <div class="weather-card weather-placeholder">
+        <div class="placeholder-icon">🌍</div>
+        <p id="t-placeholder">Введіть місто для отримання погодних даних</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentLang = 'uk';
+    let lastCity = '';
+
+    const i18n = {
+      uk: {
+        title: "Погода",
+        subtitle: "Перевіряйте погоду в будь-якому куточку світу",
+        placeholderInput: "Введіть назву міста...",
+        searchBtn: "Пошук",
+        placeholderText: "Введіть місто для отримання погодних даних",
+        loading: "Завантаження даних",
+        windSpeed: "Швидкість вітру",
+        connError: "Не вдалося з'єднатися з сервером."
+      },
+      en: {
+        title: "Weather",
+        subtitle: "Check the weather anywhere in the world",
+        placeholderInput: "Enter city name...",
+        searchBtn: "Search",
+        placeholderText: "Enter a city to get weather data",
+        loading: "Loading data",
+        windSpeed: "Wind Speed",
+        connError: "Failed to connect to the server."
+      }
+    };
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      document.getElementById('t-title').textContent = i18n[lang].title;
+      document.getElementById('t-subtitle').textContent = i18n[lang].subtitle;
+      document.getElementById('city-input').placeholder = i18n[lang].placeholderInput;
+      document.getElementById('search-btn').textContent = i18n[lang].searchBtn;
+
+      const placeholderElem = document.getElementById('t-placeholder');
+      if (placeholderElem) {
+        placeholderElem.textContent = i18n[lang].placeholderText;
+      }
+
+      if (lastCity) {
+        fetchWeather(lastCity);
+      }
+    }
+
+    function updateEffects(themeClass) {
+      document.body.className = themeClass;
+      const cloudBg = document.getElementById('cloud-bg');
+      const rainContainer = document.getElementById('rain-container');
+      cloudBg.innerHTML = '';
+      rainContainer.innerHTML = '';
+
+      if (themeClass === 'cloudy') {
+        for (let i = 0; i < 4; i++) {
+          const cloud = document.createElement('div');
+          cloud.className = 'floating-cloud';
+          cloud.style.width = (150 + Math.random() * 150) + 'px';
+          cloud.style.height = (60 + Math.random() * 40) + 'px';
+          cloud.style.top = (10 + Math.random() * 60) + '%';
+          cloud.style.animationDuration = (15 + Math.random() * 15) + 's';
+          cloud.style.animationDelay = (Math.random() * 5) + 's';
+          cloudBg.appendChild(cloud);
+        }
+      } else if (themeClass === 'rainy') {
+        for (let i = 0; i < 50; i++) {
+          const drop = document.createElement('div');
+          drop.className = 'rain-drop';
+          drop.style.left = Math.random() * 100 + 'vw';
+          drop.style.animationDuration = (0.6 + Math.random() * 0.4) + 's';
+          drop.style.animationDelay = Math.random() * 2 + 's';
+          rainContainer.appendChild(drop);
+        }
+      }
+    }
+
+    async function fetchWeather(city) {
+      const result = document.getElementById('result');
+      result.innerHTML = `<div class="weather-card loading">${i18n[currentLang].loading}</div>`;
+
+      try {
+        const url = `/api/weather?city=${encodeURIComponent(city)}&lang=${currentLang}`;
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (!response.ok) {
+          result.innerHTML = `
+            <div class="error-message">
+              <span>⚠️</span>
+              <p>${data.detail || 'Error'}</p>
+            </div>
+          `;
+          updateEffects('day');
+          return;
+        }
+
+        lastCity = city;
+        const iconClass = data.theme_class === 'day' ? 'sun-icon' : (data.theme_class === 'cloudy' ? 'cloud-icon' : '');
+
+        result.innerHTML = `
+          <div class="weather-card">
+            <div class="city-name">
+              ${data.city} <span>${data.country}</span>
+            </div>
+            
+            <div class="weather-main">
+              <div class="weather-icon ${iconClass}">${data.icon}</div>
+              <div class="temperature">
+                ${Math.round(data.temperature)}<span>${data.temperature_unit}</span>
+              </div>
+            </div>
+
+            <div style="text-align: center;">
+              <div class="weather-description">${data.description}</div>
+            </div>
+
+            <div class="weather-details">
+              <div class="detail-item">
+                <div class="detail-label">${i18n[currentLang].windSpeed}</div>
+                <div class="detail-value">${data.windspeed} <small>${data.windspeed_unit}</small></div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        updateEffects(data.theme_class);
+
+      } catch (err) {
+        result.innerHTML = `
+          <div class="error-message">
+            <span>🔌</span>
+            <p>${i18n[currentLang].connError}</p>
+          </div>
+        `;
+        updateEffects('day');
+      }
+    }
+
+    document.getElementById('weather-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const city = document.getElementById('city-input').value.trim();
+      if (city) {
+        fetchWeather(city);
+      }
+    });
+  </script>
+</body>
+</html>
