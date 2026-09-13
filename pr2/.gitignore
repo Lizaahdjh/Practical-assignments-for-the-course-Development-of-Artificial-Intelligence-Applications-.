@@ -1,0 +1,37 @@
+# Віртуальні середовища (ігнорує папки > 1 ГБ)
+.venv/
+venv/
+ENV/
+env/
+
+# Кеш Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Локальні налаштування й секрети
+.env
+.env.local
+*.local.json
+
+# Ваги моделей — завантажуються автоматично
+*.pt
+*.onnx
+*.engine
+
+# Власний набір для оцінювання (ПР2): зображення й очікувані відповіді
+eval/images/
+eval/expected.json
+!eval/images/.gitkeep
+
+# Редактори та ОС
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Логи та тимчасові файли
+*.log

@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Object Detection — ПР2</title>
+  <style>
+    :root {
+      --primary: #0056b3;
+      --primary-hover: #004085;
+      --bg: #f4f6f9;
+      --card-bg: #ffffff;
+      --text: #212529;
+      --border: #dee2e6;
+      --danger: #d9534f;
+      --danger-hover: #c9302c;
+      --success: #28a745;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      max-width: 54rem;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    h1 { margin: 0; font-size: 1.8rem; font-weight: 700; color: #111; }
+
+    .lang-switch {
+      display: flex;
+      gap: 0.25rem;
+      background: #e9ecef;
+      padding: 0.25rem;
+      border-radius: 6px;
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      padding: 0.35rem 0.65rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #6c757d;
+      transition: all 0.2s ease;
+    }
+    .lang-btn.active {
+      background: var(--card-bg);
+      color: var(--primary);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+      margin-bottom: 1.5rem;
+    }
+
+    form {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      flex: 1;
+      min-width: 200px;
+    }
+    label { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #495057; }
+    
+    input[type="number"] {
+      padding: 0.55rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input[type="number"]:focus {
+      border-color: var(--primary);
+    }
+    
+    /* Прихований системний інпут файлів */
+    input[type="file"] {
+      display: none;
+    }
+
+    /* Стилізована кнопка завантаження файлу */
+    .custom-file-upload {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #495057;
+      background-color: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 260px;
+    }
+    .custom-file-upload:hover {
+      background-color: #f8f9fa;
+      border-color: #adb5bd;
+    }
+
+    .file-input-wrapper { 
+      display: flex; 
+      align-items: center; 
+      gap: 0.5rem; 
+    }
+
+    .btn-clear {
+      background: var(--danger);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .btn-clear:hover { background: var(--danger-hover); }
+
+    button[type="submit"] {
+      padding: 0.6rem 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      transition: background 0.2s, transform 0.1s;
+    }
+    button[type="submit"]:hover { background: var(--primary-hover); }
+    button[type="submit"]:active { transform: scale(0.98); }
+
+    .status { margin-top: 1rem; font-weight: 600; }
+    .error { color: #842029; background: #f8d7da; border: 1px solid #f5c2c7; padding: 0.8rem 1rem; border-radius: 6px; }
+    
+    .meta-info {
+      display: flex;
+      gap: 1.5rem;
+      background: #e7f1ff;
+      border-left: 4px solid var(--primary);
+      padding: 0.85rem 1.25rem;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.95rem;
+    }
+
+    .canvas-container {
+      position: relative;
+      margin-top: 1rem;
+      display: none;
+      text-align: center;
+    }
+    canvas {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; font-size: 0.9rem; }
+    th { background-color: #f8f9fa; font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <div class="header-bar">
+    <h1 id="txt-title">Детекція обʼєктів</h1>
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLanguage('uk', event)">UA</button>
+      <button class="lang-btn" onclick="setLanguage('en', event)">🇬🇧 EN</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <form id="detect-form">
+      <div class="form-group">
+        <label id="lbl-image" for="image">Зображення</label>
+        <div class="file-input-wrapper">
+          <label for="image" class="custom-file-upload" id="file-btn-text">Обрати файл...</label>
+          <input id="image" type="file" name="image" accept="image/*" required>
+          <button type="button" id="clear-btn" class="btn-clear" title="Clear">×</button>
+        </div>
+      </div>
+      <div class="form-group" style="max-width: 160px;">
+        <label id="lbl-confidence" for="confidence">Поріг упевненості</label>
+        <input id="confidence" type="number" name="confidence" min="0" max="1" step="0.05" value="0.25">
+      </div>
+      <button type="submit" id="btn-submit">Знайти обʼєкти</button>
+    </form>
+  </div>
+
+  <div id="status-msg" class="status"></div>
+  <div id="result-meta"></div>
+
+  <div class="canvas-container" id="canvas-wrapper">
+    <canvas id="output-canvas"></canvas>
+  </div>
+
+  <div id="result-table"></div>
+
+  <script>
+    const translations = {
+      uk: {
+        title: "Детекція обʼєктів",
+        lblImage: "Зображення",
+        lblConfidence: "Поріг упевненості",
+        btnSubmit: "Знайти обʼєкти",
+        btnChooseFile: "Обрати файл...",
+        clearTooltip: "Очистити фото та результати",
+        processing: "Зачекайте, триває детекція...",
+        found: "Знайдено об'єктів",
+        time: "Час інференсу",
+        threshold: "Поріг",
+        noObjects: "Об'єктів не знайдено за вказаного порогу упевненості.",
+        colClass: "Клас",
+        colConf: "Упевненість",
+        colBbox: "Межі (xmin, ymin, xmax, ymax)",
+        serverError: "Не вдалося звернутися до сервера."
+      },
+      en: {
+        title: "Object Detection",
+        lblImage: "Image File",
+        lblConfidence: "Confidence Threshold",
+        btnSubmit: "Detect Objects",
+        btnChooseFile: "Choose file...",
+        clearTooltip: "Clear image and results",
+        processing: "Processing image, please wait...",
+        found: "Objects found",
+        time: "Inference time",
+        threshold: "Threshold",
+        noObjects: "No objects detected with the current confidence threshold.",
+        colClass: "Class",
+        colConf: "Confidence",
+        colBbox: "Bounding Box (xmin, ymin, xmax, ymax)",
+        serverError: "Failed to connect to the server."
+      }
+    };
+
+    let currentLang = 'uk';
+    let currentPayload = null;
+
+    const form = document.getElementById('detect-form');
+    const imageInput = document.getElementById('image');
+    const fileBtnText = document.getElementById('file-btn-text');
+    const clearBtn = document.getElementById('clear-btn');
+    const statusMsg = document.getElementById('status-msg');
+    const resultMeta = document.getElementById('result-meta');
+    const resultTable = document.getElementById('result-table');
+    const canvasWrapper = document.getElementById('canvas-wrapper');
+    const canvas = document.getElementById('output-canvas');
+    const ctx = canvas.getContext('2d');
+    let currentImage = null;
+
+    function setLanguage(lang, event) {
+      currentLang = lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      if (event) event.target.classList.add('active');
+
+      const t = translations[lang];
+      document.getElementById('txt-title').textContent = t.title;
+      document.getElementById('lbl-image').textContent = t.lblImage;
+      document.getElementById('lbl-confidence').textContent = t.lblConfidence;
+      document.getElementById('btn-submit').textContent = t.btnSubmit;
+      
+      // Якщо файл ще не обрано, оновлюємо текст кнопки
+      if (!imageInput.files.length) {
+        fileBtnText.textContent = t.btnChooseFile;
+      }
+      
+      clearBtn.title = t.clearTooltip;
+
+      if (currentPayload) renderResults(currentPayload);
+    }
+
+    imageInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        fileBtnText.textContent = file.name; // Показуємо назву обраного файлу
+        clearBtn.style.display = 'inline-flex';
+        resetResults();
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          currentImage = new Image();
+          currentImage.onload = () => {
+            canvas.width = currentImage.width;
+            canvas.height = currentImage.height;
+            ctx.drawImage(currentImage, 0, 0);
+            canvasWrapper.style.display = 'block';
+          };
+          currentImage.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        clearAll();
+      }
+    });
+
+    clearBtn.addEventListener('click', () => {
+      imageInput.value = '';
+      clearAll();
+    });
+
+    function resetResults() {
+      statusMsg.className = 'status';
+      statusMsg.textContent = '';
+      resultMeta.innerHTML = '';
+      resultTable.innerHTML = '';
+      currentPayload = null;
+    }
+
+    function clearAll() {
+      resetResults();
+      fileBtnText.textContent = translations[currentLang].btnChooseFile;
+      clearBtn.style.display = 'none';
+      canvasWrapper.style.display = 'none';
+      currentImage = null;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const file = imageInput.files[0];
+      const conf = document.getElementById('confidence').value;
+      if (!file) return;
+
+      const data = new FormData();
+      data.append('image', file);
+      if (conf) data.append('confidence', conf);
+
+      resetResults();
+      statusMsg.textContent = translations[currentLang].processing;
+
+      try {
+        const response = await fetch('/api/detect', { method: 'POST', body: data });
+        const payload = await response.json();
+
+        if (!response.ok) {
+          statusMsg.className = 'status error';
+          statusMsg.textContent = 'Error (' + response.status + '): ' + (payload.detail || JSON.stringify(payload));
+          return;
+        }
+
+        statusMsg.textContent = '';
+        currentPayload = payload;
+        renderResults(payload);
+      } catch (error) {
+        statusMsg.className = 'status error';
+        statusMsg.textContent = translations[currentLang].serverError;
+      }
+    });
+
+    function renderResults(data) {
+      const t = translations[currentLang];
+      resultMeta.innerHTML = `
+        <div class="meta-info">
+          <span><strong>${t.found}:</strong> ${data.count}</span>
+          <span><strong>${t.time}:</strong> ${data.inference_time_seconds}s</span>
+          <span><strong>${t.threshold}:</strong> ${data.confidence_threshold}</span>
+        </div>
+      `;
+
+      if (currentImage) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(currentImage, 0, 0);
+
+        data.objects.forEach(obj => {
+          const [xmin, ymin, xmax, ymax] = obj.bbox;
+          const width = xmax - xmin;
+          const height = ymax - ymin;
+
+          ctx.strokeStyle = '#0056b3';
+          ctx.lineWidth = Math.max(2, Math.round(canvas.width / 300));
+          ctx.strokeRect(xmin, ymin, width, height);
+
+          const label = `${obj.class} ${(obj.confidence * 100).toFixed(0)}%`;
+          const fontSize = Math.max(14, Math.round(canvas.width / 40));
+          ctx.font = `600 ${fontSize}px sans-serif`;
+          
+          const textWidth = ctx.measureText(label).width;
+          ctx.fillStyle = '#0056b3';
+          ctx.fillRect(xmin, ymin > fontSize + 6 ? ymin - fontSize - 6 : ymin, textWidth + 8, fontSize + 6);
+
+          ctx.fillStyle = '#ffffff';
+          ctx.fillText(label, xmin + 4, ymin > fontSize + 6 ? ymin - 6 : ymin + fontSize);
+        });
+      }
+
+      if (data.count === 0) {
+        resultTable.innerHTML = `<p style="margin-top:1rem; font-style:italic;">${t.noObjects}</p>`;
+        return;
+      }
+
+      const rows = data.objects.map(obj => `
+        <tr>
+          <td><strong>${obj.class}</strong></td>
+          <td>${(obj.confidence * 100).toFixed(1)}%</td>
+          <td>[${obj.bbox.join(', ')}]</td>
+        </tr>
+      `).join('');
+
+      resultTable.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>${t.colClass}</th>
+              <th>${t.colConf}</th>
+              <th>${t.colBbox}</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      `;
+    }
+  </script>
+</body>
+</html>
