@@ -1,0 +1,103 @@
+<meta charset="utf-8">
+<title>Помічник служби підтримки — ПР3</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { max-width: 44rem; margin: 3rem auto; padding: 0 1.25rem;
+         font: 16px/1.55 system-ui, sans-serif; }
+  h1 { font-size: 1.4rem; margin-bottom: .25rem; }
+  p.lead { margin-top: 0; opacity: .75; }
+  textarea { width: 100%; min-height: 7rem; padding: .6rem .7rem; font: inherit;
+             border: 1px solid #8886; border-radius: .4rem; resize: vertical; }
+  button { margin-top: .75rem; padding: .5rem 1.1rem; font: inherit;
+           border: 0; border-radius: .4rem; background: #2563eb; color: #fff; cursor: pointer; }
+  button[disabled] { opacity: .55; cursor: default; }
+  #answer { margin-top: 1.5rem; padding: 1rem; border: 1px solid #8886;
+            border-radius: .4rem; white-space: pre-wrap; }
+  #answer:empty { display: none; }
+  #answer.error { border-color: #dc2626; color: #dc2626; }
+  #answer.truncated { border-color: #d97706; }
+  .meta { margin-top: .6rem; font-size: .85rem; opacity: .7; }
+  .spinner { display: inline-block; width: .8em; height: .8em; margin-right: .4em;
+             border: 2px solid currentColor; border-right-color: transparent;
+             border-radius: 50%; animation: spin .8s linear infinite; vertical-align: -0.1em; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+
+<h1>Помічник служби підтримки</h1>
+<p class="lead">Відповідає на підставі правил магазину з файлу <code>context.md</code>.</p>
+
+<form id="form">
+  <textarea id="question" maxlength="4000"
+    placeholder="Замовив навушники три дні тому, хочу повернути. Чи можна?" required></textarea>
+  <button type="submit">Запитати</button>
+</form>
+
+<div id="answer"></div>
+<div class="meta" id="meta"></div>
+
+<script>
+  const form = document.getElementById('form');
+  const question = document.getElementById('question');
+  const answer = document.getElementById('answer');
+  const meta = document.getElementById('meta');
+  const button = form.querySelector('button');
+
+  // Скільки чекати на відповідь застосунку (мс). Має бути трохи більше
+  // за LLM_TIMEOUT * (1 + кількість повторів) на сервері.
+  const CLIENT_TIMEOUT_MS = 60000;
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const text = question.value.trim();
+    if (!text) return;
+
+    button.disabled = true;
+    answer.className = '';
+    answer.innerHTML = '<span class="spinner"></span>Запит виконується…';
+    meta.textContent = '';
+
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), CLIENT_TIMEOUT_MS);
+
+    try {
+      const response = await fetch('/api/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: text }),
+        signal: controller.signal,
+      });
+
+      let data = {};
+      try { data = await response.json(); } catch (_) { /* не JSON */ }
+
+      if (!response.ok) {
+        answer.className = 'error';
+        answer.textContent = data.detail || `Помилка ${response.status}`;
+        return;
+      }
+
+      answer.className = data.truncated ? 'truncated' : '';
+      answer.textContent = data.answer || '(порожня відповідь)';
+
+      const parts = [];
+      if (data.model) parts.push(`модель: ${data.model}`);
+      if (typeof data.elapsed === 'number') {
+        parts.push(`час: ${data.elapsed.toFixed(2)} с`);
+      }
+      if (data.usage && data.usage.total_tokens) {
+        parts.push(`токенів: ${data.usage.total_tokens}`);
+      }
+      meta.textContent = parts.join(' · ');
+    } catch (err) {
+      answer.className = 'error';
+      if (err.name === 'AbortError') {
+        answer.textContent = 'Запит перевищив час очікування. Спробуйте ще раз.';
+      } else {
+        answer.textContent = 'Не вдалося звʼязатися із застосунком.';
+      }
+    } finally {
+      clearTimeout(timer);
+      button.disabled = false;
+    }
+  });
+</script>

@@ -1,0 +1,29 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Віртуальні середовища
+.venv/
+venv/
+env/
+
+# Файли з секретами
+.env
+pr3/.env
+
+# Локальні налаштування IDE
+.vscode/
+.idea/
+*.swp
+
+# Локальні дані порівняння ПР3
+pr3/compare/readme.md
+pr3/compare/findings.md
+pr3/compare/results.json
+pr3/compare/requests.example.json
+
+# Кеш ОС
+.DS_Store
+Thumbs.db
