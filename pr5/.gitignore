@@ -1,0 +1,12 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+
+# Збудований індекс — відтворюється командою, у репозиторій не потрапляє
+index/
+
+# Особисті файли порівняння
+compare/queries.json
+compare/results.json
+compare/findings.md
