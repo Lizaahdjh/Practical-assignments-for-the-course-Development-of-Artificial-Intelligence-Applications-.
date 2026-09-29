@@ -1,0 +1,34 @@
+
+---
+
+# `.gitignore` для `pr7/`
+
+Створіть або замініть `pr7/.gitignore` на цей вміст:
+
+```gitignore
+
+.env
+
+# Віртуальне середовище
+.venv/
+venv/
+
+# Кеш Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE
+.vscode/
+.idea/
+
+# Особисті зразки — не в репозиторії
+samples/own/*
+
+# Результати перевірки — ваші висновки, не для git
+eval/results.json
+eval/results.base.json
+eval/findings.md
+
+# Тимчасові файли зображень
+*.log
