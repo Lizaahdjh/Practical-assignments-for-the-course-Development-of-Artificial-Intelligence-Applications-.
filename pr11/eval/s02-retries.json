@@ -1,0 +1,363 @@
+{
+  "args": {
+    "base": "http://127.0.0.1:8000",
+    "orders": 10,
+    "seed": 7,
+    "repeat": 0.5,
+    "client": "replay",
+    "fresh": true,
+    "concurrency": 1,
+    "timeout": 120,
+    "out": "eval\\s02-retries.json",
+    "compare": null
+  },
+  "health": {
+    "gateway": {
+      "provider": "mock",
+      "fallback": "none",
+      "model": "gemini-3.5-flash-lite",
+      "timeout": 60.0,
+      "idle_timeout": 30.0,
+      "total_timeout": 120.0,
+      "max_attempts": 3,
+      "max_concurrent": 2
+    },
+    "limits": {
+      "per_minute": 100
+    },
+    "cache": {
+      "enabled": false,
+      "ttl_seconds": 3600.0,
+      "max_entries": 500,
+      "file": "state/cache.json"
+    },
+    "budget": {
+      "daily_usd": 1.0,
+      "warn_at": 0.8,
+      "file": "state/budget.json"
+    },
+    "prompt_version": "drafts-v1",
+    "log_file": "logs/app.jsonl"
+  },
+  "sequence": [
+    "d06",
+    "d07",
+    "d02",
+    "d02",
+    "d06",
+    "d04",
+    "d02",
+    "d02",
+    "d04",
+    "d02"
+  ],
+  "rows": [
+    {
+      "draft_id": "722cf791",
+      "request_id": "d06",
+      "client": "replay",
+      "status": "done",
+      "text": "Добрий день, Олено! Скасувати замовлення 10458 уже не вийде: 4 жовтня його передано Новій пошті, експрес-накладна 20450012345678. Ви можете відмовитися від посилки у відділенні — тоді вона повернеться до нас, і протягом 7 робочих днів після її надходження на склад ми повернемо кошти на вашу картку. З повагою, служба підтримки «Сузірʼя».",
+      "attempts": 2,
+      "provider": "mock",
+      "model": "mock-1",
+      "fallback": false,
+      "cached": false,
+      "cost": 0.000321,
+      "cost_estimated": false,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 262,
+        "completion_tokens": 97,
+        "total_tokens": 359
+      },
+      "elapsed": {
+        "first_token": 1.194,
+        "total": 14.978
+      },
+      "warnings": [],
+      "created_at": "2026-10-23T20:43:51",
+      "updated_at": "2026-10-23T20:44:06",
+      "events": 342,
+      "wall": 15.025084900000365
+    },
+    {
+      "draft_id": "b20cdac9",
+      "request_id": "d07",
+      "client": "replay",
+      "status": "done",
+      "text": "Добрий день, Олено! Ваше замовлення 10458 зі смарт-годинником «Вега S» передано Новій пошті 4 жовтня, номер експрес-накладної — 20450012345678. Посилка прямує до відділення № 12 у Києві; зазвичай доставка у відділення триває 1–3 робочі дні, а про прибуття Нова пошта повідомить вам SMS. З повагою, служба підтримки «Сузірʼя».",
+      "attempts": 1,
+      "provider": "mock",
+      "model": "mock-1",
+      "fallback": false,
+      "cached": false,
+      "cost": 0.000304,
+      "cost_estimated": false,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 239,
+        "completion_tokens": 93,
+        "total_tokens": 332
+      },
+      "elapsed": {
+        "first_token": 0.607,
+        "total": 14.082
+      },
+      "warnings": [],
+      "created_at": "2026-10-23T20:44:06",
+      "updated_at": "2026-10-23T20:44:20",
+      "events": 328,
+      "wall": 14.135952800002997
+    },
+    {
+      "draft_id": "62262929",
+      "request_id": "d02",
+      "client": "replay",
+      "status": "done",
+      "text": "Добрий день, Ірино! На жаль, повернути фільтри до «Сіріус R10» ми не зможемо: фільтри належать до витратних матеріалів, а витратні матеріали належної якості поверненню не підлягають. Це стосується обох упаковок із замовлення 10412. Якщо у вас виникнуть інші питання, ми завжди на звʼязку. З повагою, служба підтримки «Сузірʼя».",
+      "attempts": 1,
+      "provider": "mock",
+      "model": "mock-1",
+      "fallback": false,
+      "cached": false,
+      "cost": 0.000308,
+      "cost_estimated": false,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 253,
+        "completion_tokens": 93,
+        "total_tokens": 346
+      },
+      "elapsed": {
+        "first_token": 0.64,
+        "total": 13.953
+      },
+      "warnings": [],
+      "created_at": "2026-10-23T20:44:20",
+      "updated_at": "2026-10-23T20:44:34",
+      "events": 330,
+      "wall": 14.11381750000146
+    },
+    {
+      "draft_id": "7608b268",
+      "request_id": "d02",
+      "client": "replay",
+      "status": "done",
+      "text": "Добрий день, Ірино! На жаль, повернути фільтри до «Сіріус R10» ми не зможемо: фільтри належать до витратних матеріалів, а витратні матеріали належної якості поверненню не підлягають. Це стосується обох упаковок із замовлення 10412. Якщо у вас виникнуть інші питання, ми завжди на звʼязку. З повагою, служба підтримки «Сузірʼя».",
+      "attempts": 1,
+      "provider": "mock",
+      "model": "mock-1",
+      "fallback": false,
+      "cached": false,
+      "cost": 0.000308,
+      "cost_estimated": false,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 253,
+        "completion_tokens": 93,
+        "total_tokens": 346
+      },
+      "elapsed": {
+        "first_token": 0.607,
+        "total": 14.0
+      },
+      "warnings": [],
+      "created_at": "2026-10-23T20:44:34",
+      "updated_at": "2026-10-23T20:44:48",
+      "events": 330,
+      "wall": 14.225974799999676
+    },
+    {
+      "draft_id": "383c31a6",
+      "request_id": "d06",
+      "client": "replay",
+      "status": "failed",
+      "text": "",
+      "attempts": 3,
+      "provider": "mock",
+      "model": "mock-1",
+      "fallback": false,
+      "cached": false,
+      "cost": null,
+      "cost_estimated": false,
+      "error": {
+        "kind": "unavailable",
+        "message": "Провайдер недоступний.",
+        "retryable": true
+      },
+      "usage": null,
+      "elapsed": {},
+      "warnings": [],
+      "created_at": "2026-10-23T20:44:48",
+      "updated_at": "2026-10-23T20:44:50",
+      "events": 5,
+      "wall": 1.6632489999974496
+    },
+    {
+      "draft_id": "4c1c0bb4",
+      "request_id": "d04",
+      "client": "replay",
+      "status": "done",
+      "text": "Добрий день, Олено! Прикро, що лівий навушник перестав заряджатися. Ми оформили заявку на повернення за дефектом R-5002 для навушників «Оріон X2» із замовлення 10421 — гарантія на них діє. Надішліть навушники Новою поштою на відділення № 12 у Києві за рахунок магазину: номер експрес-накладної надійде вам окремим повідомленням протягом дня. Після перевірки в сервісному центрі, яка триває до 14 днів, ми замінимо навушники або повернемо кошти — на ваш вибір. З повагою, служба підтримки «Сузірʼя».",
+      "attempts": 1,
+      "provider": "mock",
+      "model": "mock-1",
+      "fallback": false,
+      "cached": false,
+      "cost": 0.000447,
+      "cost_estimated": false,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 308,
+        "completion_tokens": 142,
+        "total_tokens": 450
+      },
+      "elapsed": {
+        "first_token": 0.605,
+        "total": 21.025
+      },
+      "warnings": [],
+      "created_at": "2026-10-23T20:44:50",
+      "updated_at": "2026-10-23T20:45:11",
+      "events": 501,
+      "wall": 21.24408620000031
+    },
+    {
+      "draft_id": "b323a0b3",
+      "request_id": "d02",
+      "client": "replay",
+      "status": "done",
+      "text": "Добрий день, Ірино! На жаль, повернути фільтри до «Сіріус R10» ми не зможемо: фільтри належать до витратних матеріалів, а витратні матеріали належної якості поверненню не підлягають. Це стосується обох упаковок із замовлення 10412. Якщо у вас виникнуть інші питання, ми завжди на звʼязку. З повагою, служба підтримки «Сузірʼя».",
+      "attempts": 1,
+      "provider": "mock",
+      "model": "mock-1",
+      "fallback": false,
+      "cached": false,
+      "cost": 0.000308,
+      "cost_estimated": false,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 253,
+        "completion_tokens": 93,
+        "total_tokens": 346
+      },
+      "elapsed": {
+        "first_token": 0.607,
+        "total": 13.937
+      },
+      "warnings": [],
+      "created_at": "2026-10-23T20:45:11",
+      "updated_at": "2026-10-23T20:45:25",
+      "events": 330,
+      "wall": 13.977432400002726
+    },
+    {
+      "draft_id": "6f0cfed9",
+      "request_id": "d02",
+      "client": "replay",
+      "status": "done",
+      "text": "Добрий день, Ірино! На жаль, повернути фільтри до «Сіріус R10» ми не зможемо: фільтри належать до витратних матеріалів, а витратні матеріали належної якості поверненню не підлягають. Це стосується обох упаковок із замовлення 10412. Якщо у вас виникнуть інші питання, ми завжди на звʼязку. З повагою, служба підтримки «Сузірʼя».",
+      "attempts": 2,
+      "provider": "mock",
+      "model": "mock-1",
+      "fallback": false,
+      "cached": false,
+      "cost": 0.000308,
+      "cost_estimated": false,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 253,
+        "completion_tokens": 93,
+        "total_tokens": 346
+      },
+      "elapsed": {
+        "first_token": 1.199,
+        "total": 14.537
+      },
+      "warnings": [],
+      "created_at": "2026-10-23T20:45:25",
+      "updated_at": "2026-10-23T20:45:40",
+      "events": 331,
+      "wall": 14.617073599998548
+    },
+    {
+      "draft_id": "29e5e645",
+      "request_id": "d04",
+      "client": "replay",
+      "status": "done",
+      "text": "Добрий день, Олено! Прикро, що лівий навушник перестав заряджатися. Ми оформили заявку на повернення за дефектом R-5002 для навушників «Оріон X2» із замовлення 10421 — гарантія на них діє. Надішліть навушники Новою поштою на відділення № 12 у Києві за рахунок магазину: номер експрес-накладної надійде вам окремим повідомленням протягом дня. Після перевірки в сервісному центрі, яка триває до 14 днів, ми замінимо навушники або повернемо кошти — на ваш вибір. З повагою, служба підтримки «Сузірʼя».",
+      "attempts": 1,
+      "provider": "mock",
+      "model": "mock-1",
+      "fallback": false,
+      "cached": false,
+      "cost": 0.000447,
+      "cost_estimated": false,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 308,
+        "completion_tokens": 142,
+        "total_tokens": 450
+      },
+      "elapsed": {
+        "first_token": 0.63,
+        "total": 20.943
+      },
+      "warnings": [],
+      "created_at": "2026-10-23T20:45:40",
+      "updated_at": "2026-10-23T20:46:01",
+      "events": 501,
+      "wall": 21.158491199996206
+    },
+    {
+      "draft_id": "9937cc4f",
+      "request_id": "d02",
+      "client": "replay",
+      "status": "done",
+      "text": "Добрий день, Ірино! На жаль, повернути фільтри до «Сіріус R10» ми не зможемо: фільтри належать до витратних матеріалів, а витратні матеріали належної якості поверненню не підлягають. Це стосується обох упаковок із замовлення 10412. Якщо у вас виникнуть інші питання, ми завжди на звʼязку. З повагою, служба підтримки «Сузірʼя».",
+      "attempts": 3,
+      "provider": "mock",
+      "model": "mock-1",
+      "fallback": false,
+      "cached": false,
+      "cost": 0.000308,
+      "cost_estimated": false,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 253,
+        "completion_tokens": 93,
+        "total_tokens": 346
+      },
+      "elapsed": {
+        "first_token": 2.322,
+        "total": 15.629
+      },
+      "warnings": [],
+      "created_at": "2026-10-23T20:46:01",
+      "updated_at": "2026-10-23T20:46:17",
+      "events": 332,
+      "wall": 15.783922599999642
+    }
+  ],
+  "summary": {
+    "orders": 10,
+    "statuses": {
+      "done": 9,
+      "failed": 1
+    },
+    "cached_hits": 0,
+    "provider_attempts": 16,
+    "fallbacks": 0,
+    "tokens_in": 2382,
+    "tokens_out": 939,
+    "cost_total": 0.003059,
+    "cost_billed": 0.003059,
+    "cost_known_for": 9,
+    "wall_p50": 14.225974799999676,
+    "wall_p95": 21.24408620000031,
+    "first_token_p50": 0.63,
+    "first_token_p95": 2.322,
+    "wall_total": 145.94524180000008
+  }
+}

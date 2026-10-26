@@ -1,0 +1,146 @@
+{
+  "args": {
+    "base": "http://127.0.0.1:8000",
+    "orders": 3,
+    "seed": 3,
+    "repeat": 0.5,
+    "client": "replay",
+    "fresh": true,
+    "concurrency": 1,
+    "timeout": 120,
+    "out": "eval\\s14-restart.json",
+    "compare": null
+  },
+  "health": {
+    "gateway": {
+      "provider": "mock",
+      "fallback": "none",
+      "model": "gemini-3.5-flash-lite",
+      "timeout": 60.0,
+      "idle_timeout": 30.0,
+      "total_timeout": 120.0,
+      "max_attempts": 3,
+      "max_concurrent": 2
+    },
+    "limits": {
+      "per_minute": 100
+    },
+    "cache": {
+      "enabled": false,
+      "ttl_seconds": 3600.0,
+      "max_entries": 500,
+      "file": "state/cache.json"
+    },
+    "budget": {
+      "daily_usd": 0.003,
+      "warn_at": 0.8,
+      "file": "state/budget.json"
+    },
+    "prompt_version": "drafts-v1",
+    "log_file": "logs/app.jsonl"
+  },
+  "sequence": [
+    "d04",
+    "d03",
+    "d03"
+  ],
+  "rows": [
+    {
+      "draft_id": "6926852e",
+      "request_id": "d04",
+      "client": "replay",
+      "status": "failed",
+      "text": "",
+      "attempts": 0,
+      "provider": null,
+      "model": null,
+      "fallback": false,
+      "cached": false,
+      "cost": null,
+      "cost_estimated": false,
+      "error": {
+        "kind": "budget",
+        "message": "денний ліміт 0.0030 $ вичерпано (витрачено 0.0030 $); відновиться 2026-10-24T00:00:00",
+        "retryable": false
+      },
+      "usage": null,
+      "elapsed": {},
+      "warnings": [],
+      "created_at": "2026-10-23T21:10:35",
+      "updated_at": "2026-10-23T21:10:35",
+      "events": 2,
+      "wall": 0.29307880000123987
+    },
+    {
+      "draft_id": "98af30f1",
+      "request_id": "d03",
+      "client": "replay",
+      "status": "failed",
+      "text": "",
+      "attempts": 0,
+      "provider": null,
+      "model": null,
+      "fallback": false,
+      "cached": false,
+      "cost": null,
+      "cost_estimated": false,
+      "error": {
+        "kind": "budget",
+        "message": "денний ліміт 0.0030 $ вичерпано (витрачено 0.0030 $); відновиться 2026-10-24T00:00:00",
+        "retryable": false
+      },
+      "usage": null,
+      "elapsed": {},
+      "warnings": [],
+      "created_at": "2026-10-23T21:10:35",
+      "updated_at": "2026-10-23T21:10:35",
+      "events": 2,
+      "wall": 0.3068806000010227
+    },
+    {
+      "draft_id": "be0da0f6",
+      "request_id": "d03",
+      "client": "replay",
+      "status": "failed",
+      "text": "",
+      "attempts": 0,
+      "provider": null,
+      "model": null,
+      "fallback": false,
+      "cached": false,
+      "cost": null,
+      "cost_estimated": false,
+      "error": {
+        "kind": "budget",
+        "message": "денний ліміт 0.0030 $ вичерпано (витрачено 0.0030 $); відновиться 2026-10-24T00:00:00",
+        "retryable": false
+      },
+      "usage": null,
+      "elapsed": {},
+      "warnings": [],
+      "created_at": "2026-10-23T21:10:36",
+      "updated_at": "2026-10-23T21:10:36",
+      "events": 2,
+      "wall": 0.27870989999792073
+    }
+  ],
+  "summary": {
+    "orders": 3,
+    "statuses": {
+      "failed": 3
+    },
+    "cached_hits": 0,
+    "provider_attempts": 0,
+    "fallbacks": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "cost_total": null,
+    "cost_billed": null,
+    "cost_known_for": 0,
+    "wall_p50": 0.29307880000123987,
+    "wall_p95": 0.3068806000010227,
+    "first_token_p50": null,
+    "first_token_p95": null,
+    "wall_total": 0.878717500003404
+  }
+}

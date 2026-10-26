@@ -1,0 +1,146 @@
+{
+  "args": {
+    "base": "http://127.0.0.1:8000",
+    "orders": 3,
+    "seed": 4,
+    "repeat": 0.5,
+    "client": "replay",
+    "fresh": true,
+    "concurrency": 1,
+    "timeout": 120,
+    "out": "eval\\s18-midstream.json",
+    "compare": null
+  },
+  "health": {
+    "gateway": {
+      "provider": "mock",
+      "fallback": "none",
+      "model": "gemini-3.5-flash-lite",
+      "timeout": 60.0,
+      "idle_timeout": 30.0,
+      "total_timeout": 120.0,
+      "max_attempts": 3,
+      "max_concurrent": 2
+    },
+    "limits": {
+      "per_minute": 10
+    },
+    "cache": {
+      "enabled": false,
+      "ttl_seconds": 3600.0,
+      "max_entries": 500,
+      "file": "state/cache.json"
+    },
+    "budget": {
+      "daily_usd": 1.0,
+      "warn_at": 0.8,
+      "file": "state/budget.json"
+    },
+    "prompt_version": "drafts-v1",
+    "log_file": "logs/app.jsonl"
+  },
+  "sequence": [
+    "d04",
+    "d04",
+    "d04"
+  ],
+  "rows": [
+    {
+      "draft_id": "6c08947d",
+      "request_id": "d04",
+      "client": "replay",
+      "status": "failed",
+      "text": "Добри",
+      "attempts": 3,
+      "provider": "mock",
+      "model": "mock-1",
+      "fallback": false,
+      "cached": false,
+      "cost": null,
+      "cost_estimated": false,
+      "error": {
+        "kind": "unavailable",
+        "message": "Обрив під час відповіді.",
+        "retryable": true
+      },
+      "usage": null,
+      "elapsed": {},
+      "warnings": [],
+      "created_at": "2026-10-23T20:31:49",
+      "updated_at": "2026-10-23T20:31:53",
+      "events": 20,
+      "wall": 4.281729899994389
+    },
+    {
+      "draft_id": "037dc847",
+      "request_id": "d04",
+      "client": "replay",
+      "status": "failed",
+      "text": "Добри",
+      "attempts": 3,
+      "provider": "mock",
+      "model": "mock-1",
+      "fallback": false,
+      "cached": false,
+      "cost": null,
+      "cost_estimated": false,
+      "error": {
+        "kind": "unavailable",
+        "message": "Обрив під час відповіді.",
+        "retryable": true
+      },
+      "usage": null,
+      "elapsed": {},
+      "warnings": [],
+      "created_at": "2026-10-23T20:31:54",
+      "updated_at": "2026-10-23T20:31:58",
+      "events": 20,
+      "wall": 4.307654900003399
+    },
+    {
+      "draft_id": "9a9a3de9",
+      "request_id": "d04",
+      "client": "replay",
+      "status": "failed",
+      "text": "Добри",
+      "attempts": 3,
+      "provider": "mock",
+      "model": "mock-1",
+      "fallback": false,
+      "cached": false,
+      "cost": null,
+      "cost_estimated": false,
+      "error": {
+        "kind": "unavailable",
+        "message": "Обрив під час відповіді.",
+        "retryable": true
+      },
+      "usage": null,
+      "elapsed": {},
+      "warnings": [],
+      "created_at": "2026-10-23T20:31:58",
+      "updated_at": "2026-10-23T20:32:02",
+      "events": 20,
+      "wall": 4.297093599998334
+    }
+  ],
+  "summary": {
+    "orders": 3,
+    "statuses": {
+      "failed": 3
+    },
+    "cached_hits": 0,
+    "provider_attempts": 9,
+    "fallbacks": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "cost_total": null,
+    "cost_billed": null,
+    "cost_known_for": 0,
+    "wall_p50": 4.297093599998334,
+    "wall_p95": 4.307654900003399,
+    "first_token_p50": null,
+    "first_token_p95": null,
+    "wall_total": 12.886531500000274
+  }
+}
