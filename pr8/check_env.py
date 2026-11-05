@@ -135,6 +135,7 @@ def check_shop() -> bool:
     sys.path.insert(0, str(HERE))
     try:
         from shop import service
+        service.reset()
         customers = service.list_customers()
         orders = service.list_orders(customers[0]["customer_id"])
         products = service.search_products("", limit=50)
