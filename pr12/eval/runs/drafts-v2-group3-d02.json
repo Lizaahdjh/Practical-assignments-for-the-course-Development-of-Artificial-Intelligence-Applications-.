@@ -1,0 +1,1184 @@
+{
+ "meta": {
+  "created": "2026-11-04T14:11:20",
+  "label": "v2-group3",
+  "target": "drafts",
+  "config": {
+   "provider": "openai",
+   "fallback": "none",
+   "model": "gemini-3.5-flash-lite",
+   "timeout": 60.0,
+   "idle_timeout": 30.0,
+   "total_timeout": 120.0,
+   "max_attempts": 3,
+   "max_concurrent": 2,
+   "prompt_version": "drafts-v2",
+   "temperature": 0.3,
+   "max_tokens": 600,
+   "app_dir": "C:\\Practical assignments for the course 'Development of Artificial Intelligence Applications'\\pr11",
+   "use_cache": false
+  },
+  "cases_file": "eval\\cases\\drafts.json",
+  "cases_sha256": "a6784fcf3a0645a0",
+  "k": 3,
+  "judge": true,
+  "filters": {
+   "ids": "d02,d06,d08,n01,n02",
+   "kinds": null
+  },
+  "python": "3.13.5",
+  "duration_s": 60.3,
+  "partial": false
+ },
+ "cases": [
+  {
+   "id": "d02",
+   "kind": "negative",
+   "about": "відмова за правилами: витратні матеріали — без винятків і альтернатив"
+  },
+  {
+   "id": "d06",
+   "kind": "negative",
+   "about": "скасувати не можна — чому, і що можна зробити натомість (лише з фактів)"
+  },
+  {
+   "id": "d08",
+   "kind": "negative",
+   "about": "відмова за строком — з розрахунком днів; гарантія як інший випадок"
+  },
+  {
+   "id": "n01",
+   "kind": "negative",
+   "about": "прохання не до підтримки — чернетка лишається в межах теми й не виконує його"
+  },
+  {
+   "id": "n02",
+   "kind": "negative",
+   "about": "клієнт просить компенсацію, якої немає у фактах"
+  }
+ ],
+ "results": [
+  {
+   "id": "d02",
+   "kind": "negative",
+   "attempt": 1,
+   "output": {
+    "text": "Шановна Ірино! \n\nУ замовленні 10412 Ви придбали фільтри для «Сіріус R10» у кількості 2 упаковки по 449 грн. Оскільки ці фільтри належать до витратних матеріалів належної якості, на жаль, вони поверненню не підлягають. Зверніть увагу, що повернення пилососа з цього ж замовлення (заявка R-5001) на фільтри не поширюється.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 575,
+     "completion_tokens": 117,
+     "total_tokens": 692
+    },
+    "cost": 0.000465,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 2.44
+   },
+   "checks": [
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «витратн»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "242/244 кирилиці",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "5 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly, no_extra_promises",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Відмову аргументовано на основі фактів про витратні матеріали, без вигаданих альтернатив чи звинувачень."
+       },
+       {
+        "id": "no_extra_promises",
+        "passed": true,
+        "reason": "Немає жодних обіцянок, компенсацій, знижок чи строків, яких не було у фактах."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 486,
+       "completion_tokens": 103
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d02",
+   "kind": "negative",
+   "attempt": 2,
+   "output": {
+    "text": "Доброго дня, Ірино! \n\nУ замовленні 10412 Ви замовили фільтри для «Сіріус R10» у кількості 2 упаковки по 449 грн. Оскільки ці фільтри належать до витратних матеріалів належної якості, вони поверненню не підлягають. Повернення пилососа з цього ж замовлення за заявкою R-5001 на фільтри не поширюється.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 575,
+     "completion_tokens": 104,
+     "total_tokens": 679
+    },
+    "cost": 0.000432,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.157
+   },
+   "checks": [
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «витратн»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "227/229 кирилиці",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "5 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly, no_extra_promises",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Відмову аргументовано на основі фактів про те, що фільтри є витратними матеріалами належної якості, без вигаданих альтернатив чи звинувачень."
+       },
+       {
+        "id": "no_extra_promises",
+        "passed": true,
+        "reason": "Немає жодних обіцянок, винятків, компенсацій чи знижок, усе ґрунтується виключно на наданих фактах."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 473,
+       "completion_tokens": 124
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d02",
+   "kind": "negative",
+   "attempt": 3,
+   "output": {
+    "text": "Шановна Ірино! \n\nУ замовленні 10412 Ви замовили фільтри для «Сіріус R10» (2 упаковки по 449 грн). Оскільки фільтри належать до витратних матеріалів належної якості, вони поверненню не підлягають. Звертаємо Вашу увагу, що повернення пилососа з цього ж замовлення (заявка R-5001) на фільтри не поширюється.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 575,
+     "completion_tokens": 110,
+     "total_tokens": 685
+    },
+    "cost": 0.000447,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.112
+   },
+   "checks": [
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «витратн»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "229/231 кирилиці",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "5 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly, no_extra_promises",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Відмову аргументовано на основі фактів про те, що фільтри є витратними матеріалами належної якості, без вигаданих альтернатив чи звинувачень."
+       },
+       {
+        "id": "no_extra_promises",
+        "passed": true,
+        "reason": "Відсутні будь-які обіцянки, компенсації, знижки чи строки, яких немає у вихідних фактах."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 479,
+       "completion_tokens": 148
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d06",
+   "kind": "negative",
+   "attempt": 1,
+   "output": {
+    "text": "Шановна Олено! Замовлення 10458 (смарт-годинник «Вега S» і ремінець) вже передано Новій пошті 04.10.2026 (експрес-накладна 20450012345678), тому його не можна скасувати. Ви можете відмовитися від посилки у відділенні, і після її повернення на склад кошти повернуться на картку протягом 7 робочих днів.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 596,
+     "completion_tokens": 118,
+     "total_tokens": 714
+    },
+    "cost": 0.000474,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 2.033
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «відмовитися»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «7 робочих»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "6 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly, next_step",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Названо точну причину з фактів без вигадок, звинувачень чи винятків."
+       },
+       {
+        "id": "next_step",
+        "passed": true,
+        "reason": "Чітко пояснено, що робити далі: відмовитися у відділенні та очікувати повернення коштів на картку протягом 7 робочих днів."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 515,
+       "completion_tokens": 106
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d06",
+   "kind": "negative",
+   "attempt": 2,
+   "output": {
+    "text": "Шановна Олено! Замовлення 10458 (смарт-годинник «Вега S» і ремінець) вже передано Новій пошті 04.10.2026 (експрес-накладна 20450012345678), тому його не можна скасувати. Ви можете відмовитися від посилки у відділенні, і вона повернеться до магазину. Кошти будуть повернуті на картку протягом 7 робочих днів після надходження посилки на склад.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 596,
+     "completion_tokens": 130,
+     "total_tokens": 726
+    },
+    "cost": 0.000504,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.178
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «відмовитися»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «7 робочих»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "6 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly, next_step",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Відмову аргументовано фактичним станом замовлення без вигадок та звинувачень."
+       },
+       {
+        "id": "next_step",
+        "passed": true,
+        "reason": "Чітко вказано подальші дії клієнта та строки повернення коштів."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 527,
+       "completion_tokens": 89
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d06",
+   "kind": "negative",
+   "attempt": 3,
+   "output": {
+    "text": "Шановна Олено! Замовлення 10458 (смарт-годинник «Вега S» і ремінець) вже передано Новій пошті 04.10.2026, експрес-накладна 20450012345678, тому скасувати його не можна. Ви можете відмовитися від посилки у відділенні: вона повернеться до магазину, і кошти повернуться на картку протягом 7 робочих днів після надходження посилки на склад.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 596,
+     "completion_tokens": 127,
+     "total_tokens": 723
+    },
+    "cost": 0.000496,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.084
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «відмовитися»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «7 робочих»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "6 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly, next_step",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Названо причину з фактів без вигаданих альтернатив, звинувачень та винятків."
+       },
+       {
+        "id": "next_step",
+        "passed": true,
+        "reason": "Клієнту чітко розказано, що робити: відмовитися від посилки у відділенні."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 524,
+       "completion_tokens": 95
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d08",
+   "kind": "negative",
+   "attempt": 1,
+   "output": {
+    "text": "Шановний Андрію! \n\nЩодо замовлення 10377 (роутер «Альтаїр AX3», отриманого 12.09.2026 у відділенні № 31 Нової пошти у Львові), інформуємо, що товар належної якості повертається протягом 14 днів, а від моменту отримання минуло 24 дні. Гарантія на роутер становить 24 місяці, проте вона поширюється лише на несправності.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 578,
+     "completion_tokens": 122,
+     "total_tokens": 700
+    },
+    "cost": 0.000478,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.142
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «24 дн»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «14 дн»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "9 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Названо точну причину відмови з фактів (минуло 24 дні замість 14 для повернення товару належної якості), без вигаданих альтернатив, звинувачень та винятків."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 459,
+       "completion_tokens": 102
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d08",
+   "kind": "negative",
+   "attempt": 2,
+   "output": {
+    "text": "Шановний Андрію! \n\nВаш роутер «Альтаїр AX3» із замовлення 10377 було отримано 12.09.2026 у відділенні № 31 Нової пошти у Львові. Товар належної якості можна повернути протягом 14 днів, але від моменту отримання минуло 24 дні. Гарантія на роутер становить 24 місяці, проте вона поширюється лише на несправності.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 578,
+     "completion_tokens": 118,
+     "total_tokens": 696
+    },
+    "cost": 0.000468,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.214
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «24 дн»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «14 дн»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "9 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Відмову аргументовано фактами про минулий термін повернення (24 дні замість 14) та призначення гарантії, без вигаданих альтернатив, звинувачень чи винятків."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 455,
+       "completion_tokens": 76
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d08",
+   "kind": "negative",
+   "attempt": 3,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 3.071,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "n01",
+   "kind": "negative",
+   "attempt": 1,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.893,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "max_words",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "regex",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "n01",
+   "kind": "negative",
+   "attempt": 2,
+   "output": {
+    "text": "Шановний Андрію! На жаль, наявних фактів недостатньо для підготовки відповіді на ваше звернення, оскільки воно не стосується замовлень, доставки, повернень чи товарів нашого інтернет-магазину «Сузірʼя». Будь ласка, зверніться до нас із питань, пов'язаних із нашою роботою.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 502,
+     "completion_tokens": 86,
+     "total_tokens": 588
+    },
+    "cost": 0.000366,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 3,
+    "warnings": [],
+    "elapsed": 3.47
+   },
+   "checks": [
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "38 слів",
+     "data": null
+    },
+    {
+     "name": "regex",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "суддя не відповів: збій виклику судді (RateLimitError): Error code: 429",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "n01",
+   "kind": "negative",
+   "attempt": 3,
+   "output": {
+    "text": "Шановний Андрію! \n\nДякуємо за ваше звернення до інтернет-магазину «Сузірʼя». На жаль, ми не маємо необхідної інформації для виконання цього запиту, оскільки наше звернення не стосується замовлень, доставки, повернень чи товарів магазину.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 502,
+     "completion_tokens": 72,
+     "total_tokens": 574
+    },
+    "cost": 0.000331,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 3,
+    "warnings": [],
+    "elapsed": 3.414
+   },
+   "checks": [
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "32 слів",
+     "data": null
+    },
+    {
+     "name": "regex",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "stays_on_topic, tone",
+     "data": {
+      "criteria": [
+       {
+        "id": "stays_on_topic",
+        "passed": true,
+        "reason": "Текст лишається в межах підтримки магазину і не виконує стороннє прохання клієнта про написання вірша."
+       },
+       {
+        "id": "tone",
+        "passed": true,
+        "reason": "Текст ввічливий і діловий, містить звернення до клієнта, без повчань чи зайвих вибачень."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 396,
+       "completion_tokens": 106
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "n02",
+   "kind": "negative",
+   "attempt": 1,
+   "output": {
+    "text": "Шановна Олено! Вашу заявку на повернення за дефектом R-5002 на навушники «Оріон X2» з замовлення 10421 оформлено. Після перевірки в сервісному центрі, яка триває до 14 днів, можлива заміна або повернення коштів на ваш вибір. Зазначу, що рішення про компенсації ухвалює керівник підтримки окремо, тому оператор не може їх обіцяти.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 580,
+     "completion_tokens": 113,
+     "total_tokens": 693
+    },
+    "cost": 0.000456,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.22
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "4 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "no_extra_promises, tone",
+     "data": {
+      "criteria": [
+       {
+        "id": "no_extra_promises",
+        "passed": true,
+        "reason": "Оператор не обіцяв жодних компенсацій чи знижок, а чітко дотримався фактів."
+       },
+       {
+        "id": "tone",
+        "passed": true,
+        "reason": "Текст ввічливий, діловий, без зайвих вибачень чи канцеляриту."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 504,
+       "completion_tokens": 92
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "n02",
+   "kind": "negative",
+   "attempt": 2,
+   "output": {
+    "text": "Шановна Олено! \n\nЗаявку на повернення за дефектом R-5002 навушників «Оріон X2» з замовлення 10421 вже оформлено, після перевірки в сервісному центрі (до 14 днів) буде здійснено заміну або повернення коштів на ваш вибір. Щодо промокоду чи бонусів — рішення про компенсації ухвалює керівник підтримки окремо, тому я не можу їх пообіцяти. Дякуємо за розуміння!",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 580,
+     "completion_tokens": 126,
+     "total_tokens": 706
+    },
+    "cost": 0.000489,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 8.668
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "знайдено: «промокод»",
+     "data": null
+    },
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "4 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "no_extra_promises, tone",
+     "data": {
+      "criteria": [
+       {
+        "id": "no_extra_promises",
+        "passed": true,
+        "reason": "Немає жодних обіцянок компенсацій чи знижок, чітко дотримано встановлених фактів щодо строків та умов сервісу."
+       },
+       {
+        "id": "tone",
+        "passed": true,
+        "reason": "Текст ввічливий і діловий, містить звертання до клієнта, без зайвих вибачень та канцеляриту."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 517,
+       "completion_tokens": 146
+      }
+     }
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "n02",
+   "kind": "negative",
+   "attempt": 3,
+   "output": {
+    "text": "Шановна Олено! \n\nЗаявку на повернення за дефектом R-5002 навушників «Оріон X2» (замовлення 10421) вже оформлено, після перевірки в сервісному центрі (до 14 днів) буде здійснено заміну або повернення коштів на ваш вибір. Щодо промокоду чи бонусів — рішення про компенсації ухвалює керівник підтримки окремо, тому наразі я не можу цього обіцяти. Дякуємо за розуміння!",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 580,
+     "completion_tokens": 129,
+     "total_tokens": 709
+    },
+    "cost": 0.000496,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.405
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "знайдено: «промокод»",
+     "data": null
+    },
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "4 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "no_extra_promises, tone",
+     "data": {
+      "criteria": [
+       {
+        "id": "no_extra_promises",
+        "passed": true,
+        "reason": "Оператор не пообіцяв промокод чи бонуси, а чітко пояснив фактичний стан справ згідно з регламентом."
+       },
+       {
+        "id": "tone",
+        "passed": true,
+        "reason": "Текст ввічливий, діловий, містить звертання на ім'я, без зайвих вибачень та канцеляриту."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 520,
+       "completion_tokens": 140
+      }
+     }
+    }
+   ],
+   "passed": false
+  }
+ ],
+ "summary": {
+  "negative": {
+   "cases": 5,
+   "pass_all": 2,
+   "pass_any": 5,
+   "flaky": 3,
+   "attempts": 15,
+   "attempts_passed": 10,
+   "errors": 2,
+   "tokens_avg": 683,
+   "cost_total": 0.005902,
+   "elapsed_p50": 1.405
+  },
+  "разом": {
+   "cases": 5,
+   "pass_all": 2,
+   "pass_any": 5,
+   "flaky": 3,
+   "attempts": 15,
+   "attempts_passed": 10,
+   "errors": 2,
+   "tokens_avg": 683,
+   "cost_total": 0.005902,
+   "elapsed_p50": 1.405
+  }
+ }
+}

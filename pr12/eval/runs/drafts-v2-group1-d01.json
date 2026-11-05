@@ -1,0 +1,1305 @@
+{
+ "meta": {
+  "created": "2026-11-04T14:07:10",
+  "label": "v2-group1",
+  "target": "drafts",
+  "config": {
+   "provider": "openai",
+   "fallback": "none",
+   "model": "gemini-3.5-flash-lite",
+   "timeout": 60.0,
+   "idle_timeout": 30.0,
+   "total_timeout": 120.0,
+   "max_attempts": 3,
+   "max_concurrent": 2,
+   "prompt_version": "drafts-v2",
+   "temperature": 0.3,
+   "max_tokens": 600,
+   "app_dir": "C:\\Practical assignments for the course 'Development of Artificial Intelligence Applications'\\pr11",
+   "use_cache": false
+  },
+  "cases_file": "eval\\cases\\drafts.json",
+  "cases_sha256": "a6784fcf3a0645a0",
+  "k": 3,
+  "judge": true,
+  "filters": {
+   "ids": "d01,d04,d05,d07,e01",
+   "kinds": null
+  },
+  "python": "3.13.5",
+  "duration_s": 72.3,
+  "partial": false
+ },
+ "cases": [
+  {
+   "id": "d01",
+   "kind": "normal",
+   "about": "повернення оформлено — усі факти мають потрапити в чернетку"
+  },
+  {
+   "id": "d04",
+   "kind": "normal",
+   "about": "повернення за дефектом — номер заявки, як відправити, що накладна прийде окремо"
+  },
+  {
+   "id": "d05",
+   "kind": "normal",
+   "about": "скасування виконано — платити нічого не треба, курʼєр не приїде"
+  },
+  {
+   "id": "d07",
+   "kind": "normal",
+   "about": "стан замовлення — номер, накладна, строк як діапазон; без вигаданої точної дати"
+  },
+  {
+   "id": "e01",
+   "kind": "edge",
+   "about": "фактів немає зовсім — чернетка не має вигадувати; відмова на вході також прийнятна"
+  }
+ ],
+ "results": [
+  {
+   "id": "d01",
+   "kind": "normal",
+   "attempt": 1,
+   "output": {
+    "text": "Добрий день, Ірино! \n\nВашу заявку на повернення R-5001 для товару робот-пилосос «Сіріус R10» (1 шт.) з замовлення 10412 успішно оформлено. Оскільки замовлення було отримане 29.09.2026, повернути товар належної якості можна до 13.10.2026. Будь ласка, привезти товар потрібно на склад за адресою: вул. Промислова, 7, у повній комплектації з документом про оплату. Кошти будуть повернуті на картку протягом 7 робочих днів після перевірки товару.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 664,
+     "completion_tokens": 160,
+     "total_tokens": 824
+    },
+    "cost": 0.000599,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 2.422
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «13.10»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «7 робочих»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "323/325 кирилиці",
+     "data": null
+    },
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "69 слів",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "12 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "tone, next_step",
+     "data": {
+      "criteria": [
+       {
+        "id": "tone",
+        "passed": true,
+        "reason": "Текст ввічливий, діловий, містить звертання, без повчань, зайвих вибачень чи канцеляриту."
+       },
+       {
+        "id": "next_step",
+        "passed": true,
+        "reason": "Чітко зазначено адресу складу, комплектацію, документ і терміни повернення коштів."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 642,
+       "completion_tokens": 97
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d01",
+   "kind": "normal",
+   "attempt": 2,
+   "output": {
+    "text": "Добрий день, Ірино! \n\nВашу заявку на повернення R-5001 щодо замовлення 10412 оформлено, оскільки товар можна повернути до 13.10.2026. Будь ласка, привезіть робот-пилосос «Сіріус R10» (1 шт.) на склад за адресою вул. Промислова, 7 у повній комплектації з документом про оплату. Кошти будуть повернуті на картку протягом 7 робочих днів після перевірки товару.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 664,
+     "completion_tokens": 129,
+     "total_tokens": 793
+    },
+    "cost": 0.000522,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 7.888
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «13.10»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «7 робочих»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "262/264 кирилиці",
+     "data": null
+    },
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "56 слів",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "9 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "tone, next_step",
+     "data": {
+      "criteria": [
+       {
+        "id": "tone",
+        "passed": true,
+        "reason": "Текст ввічливий, діловий, без повчань, вибачень чи канцеляриту."
+       },
+       {
+        "id": "next_step",
+        "passed": true,
+        "reason": "Клієнту чітко розписано, куди принести товар, що для цього потрібно і скільки чекати на кошти."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 611,
+       "completion_tokens": 97
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d01",
+   "kind": "normal",
+   "attempt": 3,
+   "output": {
+    "text": "Доброго дня, Ірино! \n\nЗа Вашим зверненням щодо замовлення 10412 оформлено заявку на повернення R-5001 (робот-пилосос «Сіріус R10», 1 шт.). Товар належної якості можна повернути до 13.10.2026, привізши його на склад за адресою вул. Промислова, 7 у повній комплектації з документом про оплату. Кошти будуть повернуті на картку протягом 7 робочих днів після перевірки товару.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 664,
+     "completion_tokens": 132,
+     "total_tokens": 796
+    },
+    "cost": 0.000529,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 3.476
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «13.10»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «7 робочих»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "275/277 кирилиці",
+     "data": null
+    },
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "58 слів",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "9 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "tone, next_step",
+     "data": {
+      "criteria": [
+       {
+        "id": "tone",
+        "passed": true,
+        "reason": "Текст ввічливий, діловий, містить звертання за іменем, без канцеляриту та зайвих вибачень."
+       },
+       {
+        "id": "next_step",
+        "passed": true,
+        "reason": "Клієнту чітко розписано куди привезти товар, що мати з собою та коли очікувати кошти."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 614,
+       "completion_tokens": 103
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d04",
+   "kind": "normal",
+   "attempt": 1,
+   "output": {
+    "text": "Вітаю, Олено! \n\nЗа Вашим зверненням щодо замовлення 10421 оформлено заявку на повернення R-5002 (навушники «Оріон X2», 1 шт.). Будь ласка, надішліть навушники Новою поштою на відділення № 12 у Києві за рахунок магазину, а номер експрес-накладної надійде окремим повідомленням протягом дня. Після перевірки в сервісному центрі (до 14 днів) ми замінимо навушники або повернемо кошти — на Ваш вибір.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 655,
+     "completion_tokens": 148,
+     "total_tokens": 803
+    },
+    "cost": 0.000566,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 9.409
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «накладн»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «14 дн»",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "300/302 кирилиці",
+     "data": null
+    },
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "59 слів",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "6 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "tone, next_step, grounded",
+     "data": {
+      "criteria": [
+       {
+        "id": "tone",
+        "passed": true,
+        "reason": "Текст ввічливий, діловий, без зайвих вибачень чи канцеляриту."
+       },
+       {
+        "id": "next_step",
+        "passed": true,
+        "reason": "Клієнту чітко розписано подальші дії щодо відправки та очікування результатів перевірки."
+       },
+       {
+        "id": "grounded",
+        "passed": true,
+        "reason": "Усі факти про замовлення, умови та терміни повністю відповідають наданим даним без вигадок."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 669,
+       "completion_tokens": 133
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d04",
+   "kind": "normal",
+   "attempt": 2,
+   "output": {
+    "text": "Шановна Олено! \n\nЩодо вашого замовлення 10421 повідомляємо, що заявку на повернення за дефектом R-5002 оформлено для 1 шт. навушників «Оріон X2». Надішліть навушники Новою поштою на відділення № 12 у Києві за рахунок магазину, а номер експрес-накладної надійде окремим повідомленням протягом дня. Після перевірки в сервісному центрі, яка триває до 14 днів, магазин на ваш вибір замінить навушники або поверне кошти.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 655,
+     "completion_tokens": 149,
+     "total_tokens": 804
+    },
+    "cost": 0.000569,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 7.884
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «накладн»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «14 дн»",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "322/324 кирилиці",
+     "data": null
+    },
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "62 слів",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "6 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "tone, next_step, grounded",
+     "data": {
+      "criteria": [
+       {
+        "id": "tone",
+        "passed": true,
+        "reason": "Текст ввічливий, діловий, без повчань, надмірних вибачень та канцеляриту."
+       },
+       {
+        "id": "next_step",
+        "passed": true,
+        "reason": "Клієнту чітко пояснено, куди надіслати товар, як отримати накладну та що буде після перевірки в сервісному центрі."
+       },
+       {
+        "id": "grounded",
+        "passed": true,
+        "reason": "Усі твердження повністю відповідають наданим фактам без жодних доповнень чи перекручувань."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 670,
+       "completion_tokens": 195
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d04",
+   "kind": "normal",
+   "attempt": 3,
+   "output": {
+    "text": "Шановна Олено! \n\nЩодо вашого замовлення 10421 на навушники «Оріон X2» оформлено заявку на повернення за дефектом R-5002 (1 шт., причина — несправність). Потрібно надіслати навушники Новою поштою на відділення № 12 у Києві за рахунок магазину, а номер експрес-накладної надійде окремим повідомленням протягом дня. Після перевірки в сервісному центрі, яка триватиме до 14 днів, ми замінимо навушники або повернемо кошти на ваш вибір.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 655,
+     "completion_tokens": 155,
+     "total_tokens": 810
+    },
+    "cost": 0.000584,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.369
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «накладн»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «14 дн»",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "333/335 кирилиці",
+     "data": null
+    },
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "63 слів",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "6 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "tone, next_step, grounded",
+     "data": {
+      "criteria": [
+       {
+        "id": "tone",
+        "passed": true,
+        "reason": "Текст ввічливий, діловий, без повчань, вибачень чи канцеляриту, можна надсилати клієнту."
+       },
+       {
+        "id": "next_step",
+        "passed": true,
+        "reason": "Чітко вказано, що навушники треба надіслати Новою поштою на відділення № 12 у Києві, що накладна надійде окремо та що буде після перевірки."
+       },
+       {
+        "id": "grounded",
+        "passed": true,
+        "reason": "Усі твердження повністю відповідають наданим фактам без жодних вигадок чи перекручень."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 676,
+       "completion_tokens": 208
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d05",
+   "kind": "normal",
+   "attempt": 1,
+   "output": {
+    "text": "Шановна Олено! Ваше замовлення 10463 (чохол для «Оріон X2» і два кабелі USB-C) було успішно скасовано 06.10.2026. Запланована на 07.10.2026 курʼєрська доставка також скасована. Оскільки оплата мала відбутися при отриманні, кошти повертати не потрібно. Дякуємо за звернення до інтернет-магазину «Сузірʼя»!",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 562,
+     "completion_tokens": 121,
+     "total_tokens": 683
+    },
+    "cost": 0.000471,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.296
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «скасован»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «курʼєр»",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "218/225 кирилиці",
+     "data": null
+    },
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "46 слів",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "8 чисел перевірено",
+     "data": null
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d05",
+   "kind": "normal",
+   "attempt": 2,
+   "output": {
+    "text": "Доброго дня, Олено! Ваше замовлення 10463 (чохол для «Оріон X2» і два кабелі USB-C) було успішно скасовано 06.10.2026. Курʼєрська доставка, запланована на 07.10.2026, також скасована. Оскільки оплата мала відбутися при отриманні, повертати кошти не потрібно.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 562,
+     "completion_tokens": 101,
+     "total_tokens": 663
+    },
+    "cost": 0.000421,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.144
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «скасован»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «курʼєр»",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "179/185 кирилиці",
+     "data": null
+    },
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "40 слів",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "8 чисел перевірено",
+     "data": null
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d05",
+   "kind": "normal",
+   "attempt": 3,
+   "output": {
+    "text": "Шановна Олено! Ваше замовлення 10463 (чохол для «Оріон X2» і два кабелі USB-C) було успішно скасовано 06.10.2026. Запланована на 07.10.2026 курʼєрська доставка також скасована. Оскільки оплата мала відбутися при отриманні, кошти повертати не потрібно.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 562,
+     "completion_tokens": 100,
+     "total_tokens": 662
+    },
+    "cost": 0.000419,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.394
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «скасован»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «курʼєр»",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "176/182 кирилиці",
+     "data": null
+    },
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "39 слів",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "8 чисел перевірено",
+     "data": null
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d07",
+   "kind": "normal",
+   "attempt": 1,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.894,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "regex",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "d07",
+   "kind": "normal",
+   "attempt": 2,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.898,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "regex",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "d07",
+   "kind": "normal",
+   "attempt": 3,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.901,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "regex",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "e01",
+   "kind": "edge",
+   "attempt": 1,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.764,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "status",
+     "passed": true,
+     "detail": "status=error",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "regex",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "max_words",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "e01",
+   "kind": "edge",
+   "attempt": 2,
+   "output": {
+    "text": "Шановний Андрію! Для надання інформації про ваше замовлення нам потрібно уточнити деталі. Будь ласка, зверніться до нашої служби підтримки для уточнення інформації.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 451,
+     "completion_tokens": 45,
+     "total_tokens": 496
+    },
+    "cost": 0.000248,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 2,
+    "warnings": [],
+    "elapsed": 5.501
+   },
+   "checks": [
+    {
+     "name": "status",
+     "passed": true,
+     "detail": "status=ok",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "0 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "regex",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "22 слів",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "asks_clarification",
+     "data": {
+      "criteria": [
+       {
+        "id": "asks_clarification",
+        "passed": true,
+        "reason": "Факти були відсутні, і текст чесно каже про необхідність уточнити деталі без вигадування подробиць."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 266,
+       "completion_tokens": 78
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "e01",
+   "kind": "edge",
+   "attempt": 3,
+   "output": {
+    "text": "Шановний Андрію! \n\nНа жаль, у наданих фактах недостатньо інформації про ваше замовлення, тому мені потрібно уточнити деталі. Будь ласка, повідомте номер вашого замовлення, щоб я міг перевірити інформацію.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 451,
+     "completion_tokens": 63,
+     "total_tokens": 514
+    },
+    "cost": 0.000293,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 0.947
+   },
+   "checks": [
+    {
+     "name": "status",
+     "passed": true,
+     "detail": "status=ok",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "0 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "regex",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "28 слів",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "asks_clarification",
+     "data": {
+      "criteria": [
+       {
+        "id": "asks_clarification",
+        "passed": true,
+        "reason": "Факти були відсутні, і текст чесно повідомив про потребу уточнити деталі замовлення без вигадування."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 284,
+       "completion_tokens": 58
+      }
+     }
+    }
+   ],
+   "passed": true
+  }
+ ],
+ "summary": {
+  "normal": {
+   "cases": 4,
+   "pass_all": 3,
+   "pass_any": 3,
+   "flaky": 0,
+   "attempts": 12,
+   "attempts_passed": 9,
+   "errors": 3,
+   "tokens_avg": 760,
+   "cost_total": 0.00468,
+   "elapsed_p50": 2.898
+  },
+  "edge": {
+   "cases": 1,
+   "pass_all": 0,
+   "pass_any": 1,
+   "flaky": 1,
+   "attempts": 3,
+   "attempts_passed": 2,
+   "errors": 1,
+   "tokens_avg": 505,
+   "cost_total": 0.000541,
+   "elapsed_p50": 2.764
+  },
+  "разом": {
+   "cases": 5,
+   "pass_all": 3,
+   "pass_any": 4,
+   "flaky": 1,
+   "attempts": 15,
+   "attempts_passed": 11,
+   "errors": 4,
+   "tokens_avg": 713,
+   "cost_total": 0.005221,
+   "elapsed_p50": 2.894
+  }
+ }
+}

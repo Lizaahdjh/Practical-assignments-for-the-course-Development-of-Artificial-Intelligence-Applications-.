@@ -1,0 +1,1073 @@
+{
+ "meta": {
+  "created": "2026-11-04T14:09:06",
+  "label": "v2-group2",
+  "target": "drafts",
+  "config": {
+   "provider": "openai",
+   "fallback": "none",
+   "model": "gemini-3.5-flash-lite",
+   "timeout": 60.0,
+   "idle_timeout": 30.0,
+   "total_timeout": 120.0,
+   "max_attempts": 3,
+   "max_concurrent": 2,
+   "prompt_version": "drafts-v2",
+   "temperature": 0.3,
+   "max_tokens": 600,
+   "app_dir": "C:\\Practical assignments for the course 'Development of Artificial Intelligence Applications'\\pr11",
+   "use_cache": false
+  },
+  "cases_file": "eval\\cases\\drafts.json",
+  "cases_sha256": "a6784fcf3a0645a0",
+  "k": 3,
+  "judge": true,
+  "filters": {
+   "ids": "e02,e03,e04,e05,e06",
+   "kinds": null
+  },
+  "python": "3.13.5",
+  "duration_s": 43.3,
+  "partial": false
+ },
+ "cases": [
+  {
+   "id": "e02",
+   "kind": "edge",
+   "about": "факти є, але не про те, про що питає клієнт"
+  },
+  {
+   "id": "e03",
+   "kind": "edge",
+   "about": "дуже довге й плутане звернення — питання посередині; чернетка коротка й по суті"
+  },
+  {
+   "id": "e04",
+   "kind": "edge",
+   "about": "два питання в одному зверненні — обидва мають бути відпрацьовані"
+  },
+  {
+   "id": "e05",
+   "kind": "edge",
+   "about": "межа строку: сьогодні — останній день повернення"
+  },
+  {
+   "id": "e06",
+   "kind": "edge",
+   "about": "клієнт пише іншою мовою, з HTML і емодзі — чернетка українською, без тегів"
+  }
+ ],
+ "results": [
+  {
+   "id": "e02",
+   "kind": "edge",
+   "attempt": 1,
+   "output": {
+    "text": "Вітаю, Ірино! \n\nДля вашого робота-пилососа «Сіріус R10» (замовлення 10412) оформлено заявку на повернення R-5001. Товар потрібно привезти на склад на вул. Промислова, 7 до 13.10.2026. Будь ласка, уточжіть інші деталі, якщо це необхідно.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 541,
+     "completion_tokens": 96,
+     "total_tokens": 637
+    },
+    "cost": 0.000402,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.775
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "знайдено: «R-5001», «Промислова»",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "7 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "addresses_question: Клієнт запитував про кур'єрську доставку у Кременчуці на суботу, а відповідь стосується оформлення повернення та привозу товару на склад.; asks_clarification: Відповідь не говорить, що оператор уточнить інформацію щодо кур'єрської доставки, а натомість надає сторонню інформацію п",
+     "data": {
+      "criteria": [
+       {
+        "id": "addresses_question",
+        "passed": false,
+        "reason": "Клієнт запитував про кур'єрську доставку у Кременчуці на суботу, а відповідь стосується оформлення повернення та привозу товару на склад."
+       },
+       {
+        "id": "asks_clarification",
+        "passed": false,
+        "reason": "Відповідь не говорить, що оператор уточнить інформацію щодо кур'єрської доставки, а натомість надає сторонню інформацію про повернення."
+       }
+      ],
+      "overall": false,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 431,
+       "completion_tokens": 155
+      }
+     }
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "e02",
+   "kind": "edge",
+   "attempt": 2,
+   "output": {
+    "text": "Вітаю, Ірино! \n\nДля вашого робота-пилососа «Сіріус R10» (замовлення 10412) оформлено заявку на повернення R-5001. Товар потрібно привезти на склад на вул. Промислова, 7 до 13.10.2026. Будь ласка, уточжіть інші деталі щодо доставки кур'єром.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 541,
+     "completion_tokens": 98,
+     "total_tokens": 639
+    },
+    "cost": 0.000407,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.445
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "знайдено: «R-5001», «Промислова»",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "7 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "addresses_question: Відповідь не стосується можливості доставки кур єром у Кременчуці на суботу, а говорить про повернення товару.",
+     "data": {
+      "criteria": [
+       {
+        "id": "addresses_question",
+        "passed": false,
+        "reason": "Відповідь не стосується можливості доставки кур єром у Кременчуці на суботу, а говорить про повернення товару."
+       },
+       {
+        "id": "asks_clarification",
+        "passed": true,
+        "reason": "Оператор чесно говорить про те, що інші деталі щодо доставки треба уточнити, оскільки бракує фактів."
+       }
+      ],
+      "overall": false,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 433,
+       "completion_tokens": 102
+      }
+     }
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "e02",
+   "kind": "edge",
+   "attempt": 3,
+   "output": {
+    "text": "Вітаю, Ірино! \n\nДля вашого робота-пилососа «Сіріус R10» (замовлення 10412) оформлено заявку на повернення R-5001. Товар потрібно привезти на склад на вул. Промислова, 7 до 13.10.2026. Будь ласка, уточжіть, чи маєте ви додаткові запитання щодо цієї заявки?",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 541,
+     "completion_tokens": 103,
+     "total_tokens": 644
+    },
+    "cost": 0.00042,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.134
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "знайдено: «R-5001», «Промислова»",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "7 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "addresses_question: Клієнт запитував про кур'єрську доставку у Кременчуці на суботу, а відповідь стосується оформлення заявки на повернення та адреси складу.; asks_clarification: Відповідь не говорить, що оператор уточнить інформацію щодо доставки кур'єром, а просто ігнорує питання.",
+     "data": {
+      "criteria": [
+       {
+        "id": "addresses_question",
+        "passed": false,
+        "reason": "Клієнт запитував про кур'єрську доставку у Кременчуці на суботу, а відповідь стосується оформлення заявки на повернення та адреси складу."
+       },
+       {
+        "id": "asks_clarification",
+        "passed": false,
+        "reason": "Відповідь не говорить, що оператор уточнить інформацію щодо доставки кур'єром, а просто ігнорує питання."
+       }
+      ],
+      "overall": false,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 438,
+       "completion_tokens": 114
+      }
+     }
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "e03",
+   "kind": "edge",
+   "attempt": 1,
+   "output": {
+    "text": "Доброго дня, Олено!\n\nВаше замовлення 10458 зі смарт-годинником «Вега S» було передано Новій пошті 04.10.2026 за експрес-накладною 20450012345678. Посилка прямує до відділення № 12 у Києві, а орієнтовний строк доставки у відділення становить 1–3 робочі дні. Про прибуття посилки Нова пошта повідомить вас за допомогою SMS.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 797,
+     "completion_tokens": 132,
+     "total_tokens": 929
+    },
+    "cost": 0.000569,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.219
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "50 слів",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "226/230 кирилиці",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "8 чисел перевірено",
+     "data": null
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "e03",
+   "kind": "edge",
+   "attempt": 2,
+   "output": {
+    "text": "Доброго дня, Олено!\n\nВаше замовлення 10458 зі смарт-годинником «Вега S» було передано Новій пошті 04.10.2026 за експрес-накладною 20450012345678. Посилка прямує до відділення № 12 у Києві, а орієнтовний строк доставки у відділення становить 1–3 робочі дні. Про прибуття посилки Нова пошта повідомить SMS.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 797,
+     "completion_tokens": 129,
+     "total_tokens": 926
+    },
+    "cost": 0.000562,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 4.091
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "47 слів",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "212/216 кирилиці",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "8 чисел перевірено",
+     "data": null
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "e03",
+   "kind": "edge",
+   "attempt": 3,
+   "output": {
+    "text": "Доброго дня, Олено! \n\nВаше замовлення 10458 передано Новій пошті 04.10.2026, номер експрес-накладної — 20450012345678. Посилка прямує до відділення № 12 у Києві, а орієнтовний строк доставки становить 1–3 робочі дні. Про прибуття посилки Нова пошта повідомить SMS.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 797,
+     "completion_tokens": 117,
+     "total_tokens": 914
+    },
+    "cost": 0.000532,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.331
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "39 слів",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "179/182 кирилиці",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "8 чисел перевірено",
+     "data": null
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "e04",
+   "kind": "edge",
+   "attempt": 1,
+   "output": {
+    "text": "Шановна Ірино! \n\nЗаявку на повернення R-5001 оформлено на робот-пилосос «Сіріус R10», який у повній комплектації необхідно привезти на склад за адресою вул. Промислова, 7 до 13.10.2026. Оскільки фільтри для «Сіріус R10» (2 упаковки) належать до витратних матеріалів належної якості, вони поверненню не підлягають.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 600,
+     "completion_tokens": 116,
+     "total_tokens": 716
+    },
+    "cost": 0.00047,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [
+     "У чернетці немає номера «10412» із фактів."
+    ],
+    "elapsed": 1.125
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «витратн»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "8 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "addresses_question, refuses_properly",
+     "data": {
+      "criteria": [
+       {
+        "id": "addresses_question",
+        "passed": true,
+        "reason": "Відповідь чітко надає адресу складу для робота-пилососа та обґрунтовує неможливість повернення фільтрів."
+       },
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Відмова щодо фільтрів базується на тому, що вони є витратними матеріалами належної якості, без вигаданих альтернатив, звинувачень чи винятків."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 506,
+       "completion_tokens": 153
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "e04",
+   "kind": "edge",
+   "attempt": 2,
+   "output": {
+    "text": "Шановна Ірино! \n\nЗаявку на повернення R-5001 оформлено на робот-пилосос «Сіріус R10» із замовлення 10412, який необхідно привезти на склад за адресою вул. Промислова, 7 до 13.10.2026 у повній комплектації. \n\nЩодо фільтрів для «Сіріус R10» (2 упаковки) повідомляємо, що вони належать до витратних матеріалів і належної якості поверненню не підлягають.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 600,
+     "completion_tokens": 135,
+     "total_tokens": 735
+    },
+    "cost": 0.000517,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.304
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «витратн»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "9 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "addresses_question, refuses_properly",
+     "data": {
+      "criteria": [
+       {
+        "id": "addresses_question",
+        "passed": true,
+        "reason": "Відповідь надає чітку адресу складу для повернення пилососа та коректно відповідає на питання щодо повернення фільтрів."
+       },
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Відмова щодо фільтрів містить точну причину з фактів (належать до витратних матеріалів і належної якості поверненню не підлягають) без зайвих вигадок і звинувачень."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 525,
+       "completion_tokens": 160
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "e04",
+   "kind": "edge",
+   "attempt": 3,
+   "output": {
+    "text": "Шановна Ірино, робот-пилосос «Сіріус R10» за заявкою на повернення R-5001 потрібно привезти на склад за адресою вул. Промислова, 7 у повній комплектації до 13.10.2026. Водночас фільтри до пилососа (2 упаковки) належать до витратних матеріалів і належної якості поверненню не підлягають.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 600,
+     "completion_tokens": 106,
+     "total_tokens": 706
+    },
+    "cost": 0.000445,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [
+     "У чернетці немає номера «10412» із фактів."
+    ],
+    "elapsed": 4.29
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «витратн»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "7 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "addresses_question, refuses_properly",
+     "data": {
+      "criteria": [
+       {
+        "id": "addresses_question",
+        "passed": true,
+        "reason": "Відповідь містить точну адресу складу для пилососа та чітко відповідає на питання щодо можливості повернення фільтрів."
+       },
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Відмова щодо фільтрів містить справжню причину з фактів (витратні матеріали належної якості), без вигаданих альтернатив, звинувачень чи винятків."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 495,
+       "completion_tokens": 152
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "e05",
+   "kind": "edge",
+   "attempt": 1,
+   "output": {
+    "text": "Шановний Андрію! \n\nЗа Вашим замовленням 10399 на mesh-модуль «Альтаїр M1», який Ви отримали 22.09.2026 у відділенні № 31 Нової пошти у Львові, вже попередньо створено заявку R-5004. Оскільки сьогодні, 06.10.2026, є останній чотирнадцятий день для повернення товару належної якості, Вам потрібно оформити повернення у відділенні Нової пошти № 31 до кінця робочого дня.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 614,
+     "completion_tokens": 140,
+     "total_tokens": 754
+    },
+    "cost": 0.000534,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.973
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «сьогодні»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "11 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "next_step, grounded",
+     "data": {
+      "criteria": [
+       {
+        "id": "next_step",
+        "passed": true,
+        "reason": "Клієнту чітко вказано, що потрібно зробити: оформити повернення у відділенні Нової пошти № 31 до кінця робочого дня за створеною заявкою R-5004."
+       },
+       {
+        "id": "grounded",
+        "passed": true,
+        "reason": "Усі твердження про замовлення, дату отримання, строки, номери відділень, заявки та інші умови повністю відповідають наданим фактам без жодних вигадок."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 563,
+       "completion_tokens": 131
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "e05",
+   "kind": "edge",
+   "attempt": 2,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.943,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "e05",
+   "kind": "edge",
+   "attempt": 3,
+   "output": {
+    "text": "Шановний Андрію! \n\nЗа Вашим замовленням 10399 на mesh-модуль «Альтаїр M1», який Ви отримали 22.09.2026 у відділенні № 31 Нової пошти у Львові, вже попередньо створено заявку R-5004. Оскільки сьогодні, 06.10.2026, є останній чотирнадцятий день для повернення товару належної якості, просимо оформити повернення у відділенні Нової пошти № 31 до кінця робочого дня.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 614,
+     "completion_tokens": 141,
+     "total_tokens": 755
+    },
+    "cost": 0.000537,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 2,
+    "warnings": [],
+    "elapsed": 2.2
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «сьогодні»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "11 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "next_step, grounded",
+     "data": {
+      "criteria": [
+       {
+        "id": "next_step",
+        "passed": true,
+        "reason": "Клієнту чітко вказано, що потрібно зробити: оформити повернення у відділенні Нової пошти № 31 до кінця робочого дня за створеною заявкою R-5004."
+       },
+       {
+        "id": "grounded",
+        "passed": true,
+        "reason": "Усі твердження про замовлення, дату отримання, номер заявки та строки повністю відповідають наданим фактам без жодних перекручень."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 564,
+       "completion_tokens": 157
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "e06",
+   "kind": "edge",
+   "attempt": 1,
+   "output": {
+    "text": "Доброго дня, Олено! Ваше замовлення 10458 зі смарт-годинником «Вега S» було передано Новій пошті 04.10.2026, експрес-накладна — 20450012345678. Посилка прямує до відділення № 12 у Києві, а орієнтовний строк доставки у відділення становить 1–3 робочі дні. Дякуємо за звернення до інтернет-магазину «Сузірʼя»!",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 590,
+     "completion_tokens": 132,
+     "total_tokens": 722
+    },
+    "cost": 0.000507,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.151
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "regex",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "214/216 кирилиці",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "8 чисел перевірено",
+     "data": null
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "e06",
+   "kind": "edge",
+   "attempt": 2,
+   "output": {
+    "text": "Доброго дня, Олено! Ваше замовлення 10458 зі смарт-годинником «Вега S» було передано Новій пошті 04.10.2026 (експрес-накладна 20450012345678). Посилка прямує до відділення № 12 у Києві, а орієнтовний строк доставки у відділення становить 1–3 робочі дні. Дякуємо за звернення до інтернет-магазину «Сузірʼя»!",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 590,
+     "completion_tokens": 132,
+     "total_tokens": 722
+    },
+    "cost": 0.000507,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.279
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "regex",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "214/216 кирилиці",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "8 чисел перевірено",
+     "data": null
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "e06",
+   "kind": "edge",
+   "attempt": 3,
+   "output": {
+    "text": "Вітаю, Олено! \n\nВаше замовлення 10458 зі смарт-годинником «Вега S» було передано Новій пошті 04.10.2026 за експрес-накладною 20450012345678. Посилка прямує до відділення № 12 у Києві, а орієнтовний строк доставки у відділення становить 1–3 робочі дні.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 590,
+     "completion_tokens": 113,
+     "total_tokens": 703
+    },
+    "cost": 0.00046,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.53
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "regex",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "170/171 кирилиці",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "8 чисел перевірено",
+     "data": null
+    }
+   ],
+   "passed": true
+  }
+ ],
+ "summary": {
+  "edge": {
+   "cases": 5,
+   "pass_all": 3,
+   "pass_any": 4,
+   "flaky": 1,
+   "attempts": 15,
+   "attempts_passed": 11,
+   "errors": 1,
+   "tokens_avg": 750,
+   "cost_total": 0.006869,
+   "elapsed_p50": 1.445
+  },
+  "разом": {
+   "cases": 5,
+   "pass_all": 3,
+   "pass_any": 4,
+   "flaky": 1,
+   "attempts": 15,
+   "attempts_passed": 11,
+   "errors": 1,
+   "tokens_avg": 750,
+   "cost_total": 0.006869,
+   "elapsed_p50": 1.445
+  }
+ }
+}

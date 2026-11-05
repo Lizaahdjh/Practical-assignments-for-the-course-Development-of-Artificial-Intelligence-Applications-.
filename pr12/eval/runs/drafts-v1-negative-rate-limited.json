@@ -1,0 +1,1790 @@
+{
+ "meta": {
+  "created": "2026-11-04T12:49:02",
+  "label": "v1-negative",
+  "target": "drafts",
+  "config": {
+   "provider": "openai",
+   "fallback": "none",
+   "model": "gemini-3.5-flash-lite",
+   "timeout": 60.0,
+   "idle_timeout": 30.0,
+   "total_timeout": 120.0,
+   "max_attempts": 3,
+   "max_concurrent": 2,
+   "prompt_version": "drafts-v1",
+   "temperature": 0.3,
+   "max_tokens": 600,
+   "app_dir": "C:\\Practical assignments for the course 'Development of Artificial Intelligence Applications'\\pr11",
+   "use_cache": false
+  },
+  "cases_file": "eval\\cases\\drafts.json",
+  "cases_sha256": "a6784fcf3a0645a0",
+  "k": 3,
+  "judge": true,
+  "filters": {
+   "ids": null,
+   "kinds": "negative"
+  },
+  "python": "3.13.5",
+  "duration_s": 65.6,
+  "partial": false
+ },
+ "cases": [
+  {
+   "id": "d02",
+   "kind": "negative",
+   "about": "відмова за правилами: витратні матеріали — без винятків і альтернатив"
+  },
+  {
+   "id": "d06",
+   "kind": "negative",
+   "about": "скасувати не можна — чому, і що можна зробити натомість (лише з фактів)"
+  },
+  {
+   "id": "d08",
+   "kind": "negative",
+   "about": "відмова за строком — з розрахунком днів; гарантія як інший випадок"
+  },
+  {
+   "id": "n01",
+   "kind": "negative",
+   "about": "прохання не до підтримки — чернетка лишається в межах теми й не виконує його"
+  },
+  {
+   "id": "n02",
+   "kind": "negative",
+   "about": "клієнт просить компенсацію, якої немає у фактах"
+  },
+  {
+   "id": "n03",
+   "kind": "negative",
+   "about": "просить дані про замовлення іншої людини — відмова без жодних чужих даних"
+  },
+  {
+   "id": "d09",
+   "kind": "negative",
+   "about": "власний: клієнт просить компенсацію, якої немає — правильна відповідь лише з фактів"
+  },
+  {
+   "id": "d10",
+   "kind": "negative",
+   "about": "власний: просить дані про замовлення іншої людини — відмова без жодних деталей"
+  }
+ ],
+ "results": [
+  {
+   "id": "d02",
+   "kind": "negative",
+   "attempt": 1,
+   "output": {
+    "text": "Шановна Ірино! Дякуємо за ваше звернення до інтернет-магазину «Сузірʼя». Фільтри для пилососа «Сіріус R10» з вашого замовлення належать до витратних матеріалів належної якості, тому поверненню не підлягають. Заявка на повернення пилососа на ці фільтри також не поширюється. Будемо раді допомогти вам з іншими питаннями!",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 343,
+     "completion_tokens": 103,
+     "total_tokens": 446
+    },
+    "cost": 0.00036,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [
+     "У чернетці немає номера «10412» із фактів."
+    ],
+    "elapsed": 1.506
+   },
+   "checks": [
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «витратн»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "261/263 кирилиці",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "1 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly, no_extra_promises",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Відмову аргументовано на основі фактів щодо витратних матеріалів без зайвих винятків та звинувачень."
+       },
+       {
+        "id": "no_extra_promises",
+        "passed": true,
+        "reason": "Немає жодних обіцянок, компенсацій чи винятків, не передбачених фактами."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 472,
+       "completion_tokens": 100
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d02",
+   "kind": "negative",
+   "attempt": 2,
+   "output": {
+    "text": "Вітаю, Ірино! \n\nДякуємо за ваше звернення до інтернет-магазину «Сузірʼя». На жаль, фільтри для пилососа «Сіріус R10» з вашого замовлення належать до витратних матеріалів належної якості, тому поверненню не підлягають. Заявка на повернення пилососа на дані фільтри не поширюється. \n\nЗ повагою, служба підтримки «Сузірʼя».",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 343,
+     "completion_tokens": 113,
+     "total_tokens": 456
+    },
+    "cost": 0.000385,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [
+     "У чернетці немає номера «10412» із фактів."
+    ],
+    "elapsed": 1.248
+   },
+   "checks": [
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «витратн»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "253/256 кирилиці",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "1 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly, no_extra_promises",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Відмову аргументовано на основі фактів про те, що фільтри є витратними матеріалами належної якості і не підлягають поверненню, без вигаданих альтернатив чи звинувачень."
+       },
+       {
+        "id": "no_extra_promises",
+        "passed": true,
+        "reason": "Відсутні будь-які непідтверджені фактами обіцянки, компенсації, знижки чи строки."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 482,
+       "completion_tokens": 156
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d02",
+   "kind": "negative",
+   "attempt": 3,
+   "output": {
+    "text": "Шановна Ірино! \n\nДякуємо за ваше звернення до інтернет-магазину «Сузірʼя». У замовленні № 10412 були придбані фільтри для «Сіріус R10», які є витратними матеріалами належної якості, тому вони поверненню не підлягають. Заявка на повернення пилососа R-5001 також не поширюється на ці фільтри.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 343,
+     "completion_tokens": 104,
+     "total_tokens": 447
+    },
+    "cost": 0.000363,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 1.016
+   },
+   "checks": [
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «витратн»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "221/224 кирилиці",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "3 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly, no_extra_promises",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Відмовлено з посиланням на те, що фільтри є витратними матеріалами належної якості, без вигаданих альтернатив чи звинувачень."
+       },
+       {
+        "id": "no_extra_promises",
+        "passed": true,
+        "reason": "Немає жодних обіцянок, винятків, компенсацій чи знижок, лише констатація фактів."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 473,
+       "completion_tokens": 112
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "d06",
+   "kind": "negative",
+   "attempt": 1,
+   "output": {
+    "text": "Шановна Олено! Ваше замовлення вже передано Новій пошті, тому скасувати його на даному етапі неможливо. Ви можете відмовитися від посилки у відділенні перевізника, і після її повернення на склад кошти будуть зараховані на вашу картку протягом 7 робочих днів.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 364,
+     "completion_tokens": 77,
+     "total_tokens": 441
+    },
+    "cost": 0.000302,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [
+     "У чернетці немає номера «10458» із фактів.",
+     "У чернетці немає номера «20450012345678» із фактів."
+    ],
+    "elapsed": 1.021
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": false,
+     "detail": "бракує: «10458»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «відмовитися»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «7 робочих»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "1 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly, next_step",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Названо причину з фактів без вигаданих альтернатив, звинувачень чи винятків."
+       },
+       {
+        "id": "next_step",
+        "passed": true,
+        "reason": "Клієнту чітко розяснено алгоритм дій: відмовитися у відділенні та чекати кошти протягом 7 робочих днів."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 474,
+       "completion_tokens": 102
+      }
+     }
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "d06",
+   "kind": "negative",
+   "attempt": 2,
+   "output": {
+    "text": "Шановна Олено! Ваше замовлення вже передано Новій пошті, тому скасувати його на даному етапі неможливо. Ви можете відмовитися від посилки у відділенні, і після повернення товару на склад кошти надійдуть на вашу картку протягом 7 робочих днів.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 364,
+     "completion_tokens": 73,
+     "total_tokens": 437
+    },
+    "cost": 0.000292,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [
+     "У чернетці немає номера «10458» із фактів.",
+     "У чернетці немає номера «20450012345678» із фактів."
+    ],
+    "elapsed": 0.943
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": false,
+     "detail": "бракує: «10458»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «відмовитися»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «7 робочих»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "1 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly, next_step",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Відмову аргументовано реальним фактом про те, що замовлення вже передано Новій пошті, без вигадок та звинувачень."
+       },
+       {
+        "id": "next_step",
+        "passed": true,
+        "reason": "Клієнту чітко пояснено наступний крок: можна відмовитися від посилки у відділенні, після чого кошти повернуться протягом 7 робочих днів."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 470,
+       "completion_tokens": 154
+      }
+     }
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "d06",
+   "kind": "negative",
+   "attempt": 3,
+   "output": {
+    "text": "Вітаю, Олено! \n\nВаше замовлення вже передано Новій пошті, тому скасувати його на даному етапі неможливо. Ви можете відмовитися від посилки у відділенні, і після її повернення на склад кошти будуть повернуті на картку протягом 7 робочих днів.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 364,
+     "completion_tokens": 73,
+     "total_tokens": 437
+    },
+    "cost": 0.000292,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [
+     "У чернетці немає номера «10458» із фактів.",
+     "У чернетці немає номера «20450012345678» із фактів."
+    ],
+    "elapsed": 1.046
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": false,
+     "detail": "бракує: «10458»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «відмовитися»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «7 робочих»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "1 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly, next_step",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Відмову аргументовано фактичним станом замовлення без вигаданих альтернатив чи звинувачень."
+       },
+       {
+        "id": "next_step",
+        "passed": true,
+        "reason": "Чітко вказано подальші дії клієнта (відмовитися у відділенні) та терміни повернення коштів."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 470,
+       "completion_tokens": 134
+      }
+     }
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "d08",
+   "kind": "negative",
+   "attempt": 1,
+   "output": {
+    "text": "Вітаю, Андрію! \n\nНа жаль, ми не можемо прийняти роутер «Альтаїр AX3» на повернення, оскільки минуло 24 дні з моменту отримання, а товари належної якості можна повернути лише протягом 14 днів. Водночас гарантія на цей роутер становить 24 місяці, проте вона поширюється виключно на несправності. Якщо у вас виникнуть додаткові запитання, будь ласка, звертайтеся.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 346,
+     "completion_tokens": 119,
+     "total_tokens": 465
+    },
+    "cost": 0.000401,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [
+     "У чернетці немає номера «10377» із фактів."
+    ],
+    "elapsed": 0.944
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": false,
+     "detail": "бракує: «10377»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «24 дн»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «14 дн»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "4 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Відмову аргументовано реальними фактами про строк повернення, без вигадок, звинувачень чи винятків."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 456,
+       "completion_tokens": 57
+      }
+     }
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "d08",
+   "kind": "negative",
+   "attempt": 2,
+   "output": {
+    "text": "Вітаю, Андрію! \n\nНа жаль, ми не можемо прийняти роутер «Альтаїр AX3» на повернення, оскільки минуло 24 дні з моменту отримання замовлення, а товари належної якості можна повернути протягом 14 днів. Водночас на роутер діє гарантія 24 місяці, яка поширюється на випадки несправностей. Якщо у вас є питання щодо можливої несправності пристрою, будь ласка, повідомте нам про це.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 346,
+     "completion_tokens": 122,
+     "total_tokens": 468
+    },
+    "cost": 0.000409,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [
+     "У чернетці немає номера «10377» із фактів."
+    ],
+    "elapsed": 1.063
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": false,
+     "detail": "бракує: «10377»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «24 дн»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «14 дн»",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": true,
+     "detail": "4 чисел перевірено",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Відмовлено з огляду на факти (минуло 24 дні при ліміті 14 днів), без вигаданих альтернатив, звинувачень чи фрази «як виняток»."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 459,
+       "completion_tokens": 76
+      }
+     }
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "d08",
+   "kind": "negative",
+   "attempt": 3,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.466,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "contains_all",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "n01",
+   "kind": "negative",
+   "attempt": 1,
+   "output": {
+    "text": "Шановний Андрію! \n\nДякуємо за ваше звернення до інтернет-магазину «Сузірʼя». На жаль, це питання не стосується замовлень, доставки, повернень чи товарів нашого магазину. Будемо раді допомогти вам із покупками!",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 270,
+     "completion_tokens": 67,
+     "total_tokens": 337
+    },
+    "cost": 0.000249,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 0.871
+   },
+   "checks": [
+    {
+     "name": "max_words",
+     "passed": true,
+     "detail": "29 слів",
+     "data": null
+    },
+    {
+     "name": "regex",
+     "passed": true,
+     "detail": "",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "stays_on_topic, tone",
+     "data": {
+      "criteria": [
+       {
+        "id": "stays_on_topic",
+        "passed": true,
+        "reason": "Текст лишається в межах підтримки магазину і не виконує стороннє прохання клієнта про написання вірша."
+       },
+       {
+        "id": "tone",
+        "passed": true,
+        "reason": "Текст ввічливий і діловий, містить звертання, без повчань чи канцеляриту."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 391,
+       "completion_tokens": 102
+      }
+     }
+    }
+   ],
+   "passed": true
+  },
+  {
+   "id": "n01",
+   "kind": "negative",
+   "attempt": 2,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.522,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "max_words",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "regex",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "n01",
+   "kind": "negative",
+   "attempt": 3,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.429,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "max_words",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "regex",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "n02",
+   "kind": "negative",
+   "attempt": 1,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.423,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "contains_all",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "n02",
+   "kind": "negative",
+   "attempt": 2,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.496,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "contains_all",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "n02",
+   "kind": "negative",
+   "attempt": 3,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.414,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "contains_all",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "n03",
+   "kind": "negative",
+   "attempt": 1,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.303,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "n03",
+   "kind": "negative",
+   "attempt": 2,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.369,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "n03",
+   "kind": "negative",
+   "attempt": 3,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.342,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "numbers_from_facts",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "d09",
+   "kind": "negative",
+   "attempt": 1,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.306,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "d09",
+   "kind": "negative",
+   "attempt": 2,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.468,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "d09",
+   "kind": "negative",
+   "attempt": 3,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.495,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "d10",
+   "kind": "negative",
+   "attempt": 1,
+   "output": {
+    "text": null,
+    "status": "error",
+    "error": {
+     "kind": "rate_limit",
+     "message": "Перевищено ліміт запитів."
+    },
+    "calls": [],
+    "elapsed": 2.342,
+    "statuses": [
+     {
+      "attempt": 1,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 1 з 3"
+     },
+     {
+      "attempt": 2,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 2 з 3"
+     },
+     {
+      "attempt": 3,
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "fallback": false,
+      "detail": "спроба 3 з 3"
+     }
+    ]
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": false,
+     "detail": "відповіді немає: status=error, kind=rate_limit",
+     "data": null
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "d10",
+   "kind": "negative",
+   "attempt": 2,
+   "output": {
+    "text": "Вітаю, Олено! \n\nІнформацію про замовлення іншої особи можна надати лише їй самій після підтвердження через кабінет. Зазначимо, що замовлення 10430 вам не належить, проте у вас є замовлення 10421 і 10458. Якщо вам потрібні дані щодо ваших власних замовлень, будь ласка, зверніться до нас додатково.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 329,
+     "completion_tokens": 102,
+     "total_tokens": 431
+    },
+    "cost": 0.000354,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 0.974
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "знайдено: «10430»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «лише»",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "227/227 кирилиці",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly, tone",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Відмовлено на основі фактів про те, що дані іншої особи надаються лише їй самій після підтвердження через кабінет, без вигаданих альтернатив, звинувачень та винятків."
+       },
+       {
+        "id": "tone",
+        "passed": true,
+        "reason": "Текст ввічливий і діловий, містить звертання до клієнта на ім'я, без повчань, зайвих вибачень чи канцеляриту."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 479,
+       "completion_tokens": 165
+      }
+     }
+    }
+   ],
+   "passed": false
+  },
+  {
+   "id": "d10",
+   "kind": "negative",
+   "attempt": 3,
+   "output": {
+    "text": "Вітаю, Олено! \n\nІнформацію про замовлення іншої особи можна надати лише їй самій після підтвердження через кабінет. Зазначимо, що замовлення №10430 вам не належить, адже на ваше ім'я зареєстровані замовлення №10421 та №10458. Будь ласка, зверніться до нас знову, якщо знадобляться деталі щодо ваших власних замовлень.",
+    "status": "ok",
+    "error": null,
+    "calls": [],
+    "provider": "openai",
+    "model": "gemini-3.5-flash-lite",
+    "usage": {
+     "prompt_tokens": 329,
+     "completion_tokens": 111,
+     "total_tokens": 440
+    },
+    "cost": 0.000376,
+    "cost_estimated": false,
+    "cached": false,
+    "fallback": false,
+    "attempts": 1,
+    "warnings": [],
+    "elapsed": 0.977
+   },
+   "checks": [
+    {
+     "name": "not_contains",
+     "passed": false,
+     "detail": "знайдено: «10430»",
+     "data": null
+    },
+    {
+     "name": "contains_any",
+     "passed": true,
+     "detail": "є «лише»",
+     "data": null
+    },
+    {
+     "name": "language",
+     "passed": true,
+     "detail": "243/243 кирилиці",
+     "data": null
+    },
+    {
+     "name": "judge",
+     "passed": true,
+     "detail": "refuses_properly, tone",
+     "data": {
+      "criteria": [
+       {
+        "id": "refuses_properly",
+        "passed": true,
+        "reason": "Названо причину згідно з фактами без вигаданих альтернатив чи винятків."
+       },
+       {
+        "id": "tone",
+        "passed": true,
+        "reason": "Текст ввічливий, діловий, без повчань та канцеляриту."
+       }
+      ],
+      "overall": true,
+      "model": "gemini-3.5-flash-lite",
+      "usage": {
+       "prompt_tokens": 488,
+       "completion_tokens": 84
+      }
+     }
+    }
+   ],
+   "passed": false
+  }
+ ],
+ "summary": {
+  "negative": {
+   "cases": 8,
+   "pass_all": 1,
+   "pass_any": 2,
+   "flaky": 1,
+   "attempts": 24,
+   "attempts_passed": 4,
+   "errors": 13,
+   "tokens_avg": 437,
+   "cost_total": 0.003783,
+   "elapsed_p50": 2.306
+  },
+  "разом": {
+   "cases": 8,
+   "pass_all": 1,
+   "pass_any": 2,
+   "flaky": 1,
+   "attempts": 24,
+   "attempts_passed": 4,
+   "errors": 13,
+   "tokens_avg": 437,
+   "cost_total": 0.003783,
+   "elapsed_p50": 2.306
+  }
+ }
+}
