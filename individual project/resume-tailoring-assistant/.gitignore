@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Секрети
+.env
+.streamlit/secrets.toml
+
+# Дані
+*.pdf
+*.docx
+!eval/fixtures/*.pdf
+!eval/fixtures/*.docx
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/
