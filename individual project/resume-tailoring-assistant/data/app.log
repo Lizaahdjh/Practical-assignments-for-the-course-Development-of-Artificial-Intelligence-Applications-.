@@ -7,3 +7,5 @@
 {"ts": "2026-11-07T15:18:06.236173+00:00", "layer": "controller", "request_id": "8a71475c-684b-4228-a334-cba3fd266922", "event": "received"}
 {"ts": "2026-11-07T15:18:06.236394+00:00", "layer": "service", "request_id": "8a71475c-684b-4228-a334-cba3fd266922", "event": "start", "provider": "mock"}
 {"ts": "2026-11-07T15:18:06.245398+00:00", "layer": "service", "request_id": "8a71475c-684b-4228-a334-cba3fd266922", "event": "done", "score": 72}
+{"ts": "2026-11-24T19:15:32.569814+00:00", "layer": "controller", "request_id": "6c3b8dbd-3467-43cc-b099-2b2b039b9074", "event": "received"}
+{"ts": "2026-11-24T19:15:32.570188+00:00", "layer": "service", "request_id": "6c3b8dbd-3467-43cc-b099-2b2b039b9074", "event": "start", "provider": "openai_compat"}

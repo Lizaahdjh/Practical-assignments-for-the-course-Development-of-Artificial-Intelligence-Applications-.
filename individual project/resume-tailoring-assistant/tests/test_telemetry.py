@@ -24,6 +24,4 @@ def test_log_contains_all_layers(client, mock_env):
     layers = {rec["layer"] for rec in records}
     assert "controller" in layers, f"no controller log; got {layers}"
     assert "service" in layers, f"no service log; got {layers}"
-
-    # Всі записи для цього request_id мають однаковий request_id
     assert all(rec["request_id"] == req_id for rec in records)

@@ -9,6 +9,9 @@ class ErrorKind(str, Enum):
     timeout = "timeout"
     rate_limit = "rate_limit"
     internal = "internal"
+    invalid_output = "invalid_output"
+    budget = "budget"
+    auth = "auth"
 
 
 class RequestStatus(str, Enum):

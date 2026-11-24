@@ -2,7 +2,7 @@ import time
 import uuid
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 
 from app.gateway import build_provider, Gateway
@@ -19,6 +19,7 @@ from app.service import Service
 from app.settings import get_settings
 from app.storage import Storage
 from app.telemetry import configure as configure_telemetry, log
+from app.budget import BudgetTracker
 
 START_TS = time.time()
 
@@ -29,7 +30,15 @@ async def lifespan(app: FastAPI):
     configure_telemetry(settings.log_file)
     app.state.settings = settings
     app.state.storage = Storage(settings.db_path)
-    app.state.gateway = Gateway(build_provider(settings))
+    
+    # Ініціалізація бюджету
+    budget = BudgetTracker(
+        budget_file="data/budget.json",
+        daily_usd_limit=settings.budget_daily_usd,
+        daily_calls_limit=settings.budget_daily_calls,
+    )
+    
+    app.state.gateway = Gateway(build_provider(settings), budget)
     app.state.service = Service(settings, app.state.gateway, app.state.storage)
     yield
 
@@ -62,7 +71,7 @@ async def health():
         model=settings.llm_model,
         mode="mock" if settings.llm_provider == "mock" else "real",
         storage="ok" if storage.ping() else "down",
-        extra={"index": "not_loaded"},  # ПР16
+        extra={"index": "not_loaded"},
         uptime_s=round(time.time() - START_TS, 1),
     )
 
@@ -75,7 +84,16 @@ async def analyze(payload: AnalyzeRequest, request: Request):
         return await app.state.service.analyze(request_id, payload)
     except ProviderError as e:
         kind = ErrorKind(e.kind) if e.kind in ErrorKind.__members__ else ErrorKind.provider_unavailable
-        status = 504 if kind == ErrorKind.timeout else (429 if kind == ErrorKind.rate_limit else 503)
+        # Додано статус для budget (429) та invalid_output (422 або 502)
+        if kind == ErrorKind.timeout:
+            status = 504
+        elif kind == ErrorKind.rate_limit or kind == ErrorKind.budget:
+            status = 429
+        elif kind == ErrorKind.invalid_output:
+            status = 502
+        else:
+            status = 503
+            
         log("controller", request_id, event="provider_error", kind=e.kind)
         return error_response(kind, e.message, request_id, status, retryable=e.retryable)
 
@@ -85,7 +103,7 @@ async def get_request(request_id: str):
     row = app.state.storage.get_request(request_id)
     if row is None:
         return error_response(ErrorKind.not_found, "request not found", request_id, 404)
-    return row
+    return row.model_dump() if hasattr(row, "model_dump") else row
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -93,22 +111,40 @@ async def index():
     return """
     <!doctype html><html><head><meta charset="utf-8"><title>Resume Tailoring</title></head>
     <body style="font-family:sans-serif;max-width:720px;margin:2em auto">
-      <h1>Resume Tailoring Assistant (ПР14)</h1>
-      <p>Мінімальний інтерфейс для перевірки каркасу. У ПР15 з'явиться повноцінний UI.</p>
+      <h1>Resume Tailoring Assistant (ПР15)</h1>
+      <p>Інтерфейс для перевірки каркасу та AI-сценарію.</p>
       <form id="f">
         <label>Вакансія<br><textarea id="v" rows="4" cols="60">Python backend developer. Django, PostgreSQL.</textarea></label><br>
         <label>Резюме<br><textarea id="r" rows="4" cols="60">Олена К. Python developer, 3 роки. Django, DRF.</textarea></label><br>
-        <button type="submit">Аналізувати</button>
+        <button type="submit" id="btn">Аналізувати</button>
       </form>
-      <pre id="out"></pre>
+      <pre id="out" style="white-space:pre-wrap"></pre>
       <script>
         const f = document.getElementById('f');
+        const out = document.getElementById('out');
+        const btn = document.getElementById('btn');
         f.addEventListener('submit', async (e) => {
           e.preventDefault();
-          const body = { vacancy_text: v.value, resume_text: r.value };
-          const res = await fetch('/api/analyze', { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(body) });
-          const data = await res.json();
-          document.getElementById('out').textContent = JSON.stringify(data, null, 2);
+          btn.disabled = true;
+          out.style.color = '#555';
+          out.textContent = 'Аналізую...';
+          try {
+            const body = { vacancy_text: v.value, resume_text: r.value };
+            const res = await fetch('/api/analyze', { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(body) });
+            const data = await res.json();
+            if (data.error) {
+              out.style.color = 'crimson';
+              out.textContent = `Помилка [${data.error.kind}]: ${data.error.message}\\nrequest_id: ${data.error.request_id}`;
+            } else {
+              out.style.color = '#0a7';
+              out.textContent = JSON.stringify(data, null, 2);
+            }
+          } catch (err) {
+            out.style.color = 'crimson';
+            out.textContent = 'Помилка мережі: ' + err;
+          } finally {
+            btn.disabled = false;
+          }
         });
       </script>
     </body></html>
