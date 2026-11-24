@@ -8,40 +8,80 @@
 ## Що робить
 Порівнює текст резюме (PDF/DOCX) із текстом вакансії, обчислює відсоток відповідності, показує сильні сторони й прогалини, генерує поради щодо стилю та 3 можливі питання на співбесіді.
 
-## Структура
+## Структура проєкту
 
+```text
 resume-tailoring-assistant/
+│
 ├── .env.example
 ├── requirements.txt
 ├── README.md
+├── AI_USAGE.md
+│
 ├── docs/
-│   ├── architecture.md
-│   ├── api.md
+│   ├── architecture.md          # Рівні 1–3 архітектури
+│   ├── api.md                   # API-контракти
+│   ├── backlog.md               # План ПР14–ПР20
+│   ├── passport.md              # Паспорт проєкту
+│   │
 │   └── adr/
-│       ├── 001-sync-vs-async.md
-│       ├── 002-storage.md
-│       └── 003-provider.md
+│       ├── 001-sync-vs-async.md # Вибір між синхронною та асинхронною взаємодією
+│       ├── 002-storage.md       # Архітектурне рішення щодо сховища
+│       └── 003-provider.md      # Вибір AI-провайдера
+│
 ├── app/
-│   ├── __init__.py
-│   ├── main.py
-│   ├── settings.py
-│   ├── models.py
-│   ├── service.py
-│   ├── orchestration.py
-│   ├── gateway.py
-│   ├── storage.py
-│   ├── telemetry.py
+│   ├── main.py                  # Контролер: маршрути, health, HTML
+│   ├── settings.py              # Конфігурація із .env
+│   ├── models.py                # Pydantic-схеми контрактів
+│   ├── service.py               # Прикладний сервіс
+│   ├── orchestration.py         # Оркестрація AI (заготовка ПР15)
+│   ├── gateway.py               # Шлюз: вибір провайдера
+│   ├── storage.py               # SQLite-сховище
+│   ├── telemetry.py             # JSON-логи з request_id
+│   │
 │   └── providers/
-│       ├── __init__.py
-│       ├── base.py
-│       ├── mock.py
-│       └── openai_compat.py
+│       ├── base.py               # Контракт Provider
+│       ├── mock.py               # Детермінований mock-провайдер
+│       └── openai_compat.py      # Заготовка для ПР15
+│
+├── eval/
+│   └── cases.json               # Eval-кейси (n01–n09)
+│
 └── tests/
-    ├── __init__.py
-    ├── conftest.py
-    ├── test_api.py
-    ├── test_service.py
-    └── test_failure.py
+    ├── conftest.py              # Спільні налаштування тестів
+    ├── test_api.py              # Тести API
+    ├── test_service.py          # Тести прикладного сервісу
+    └── test_failure.py          # Тести обробки помилок
+```
+
+### Опис основних директорій
+
+| Директорія | Призначення |
+|---|---|
+| `app/` | Основна логіка застосунку |
+| `app/providers/` | Контракти та реалізації AI-провайдерів |
+| `docs/` | Архітектурна документація, API-контракти та планування |
+| `docs/adr/` | Архітектурні рішення (ADR) |
+| `eval/` | Набір тестових сценаріїв для оцінювання |
+| `tests/` | Автоматизовані тести застосунку |
+
+### Основні файли
+
+- `main.py` — точка входу, маршрути API, health-check та HTML.
+- `settings.py` — завантаження конфігурації з `.env`.
+- `models.py` — моделі даних і Pydantic-схеми.
+- `service.py` — прикладна бізнес-логіка.
+- `orchestration.py` — оркестрація взаємодії з AI.
+- `gateway.py` — вибір відповідного AI-провайдера.
+- `storage.py` — робота зі сховищем SQLite.
+- `telemetry.py` — журналювання подій у форматі JSON із `request_id`.
+- `providers/base.py` — загальний контракт для провайдерів.
+- `providers/mock.py` — детермінована mock-реалізація.
+- `providers/openai_compat.py` — заготовка сумісного OpenAI-провайдера.
+- `eval/cases.json` — тестові eval-кейси `n01–n09`.
+- `AI_USAGE.md` — документація використання штучного інтелекту.
+- `requirements.txt` — залежності Python.
+- `.env.example` — приклад змінних середовища.
 
 ## Стек
 - Python 3.10+

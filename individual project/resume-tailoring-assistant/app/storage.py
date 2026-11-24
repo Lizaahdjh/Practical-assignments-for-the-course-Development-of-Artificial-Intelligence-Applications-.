@@ -4,6 +4,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from app.models import RequestStatus, StoredRequest
+
 
 class Storage:
     def __init__(self, db_path: str):
@@ -36,15 +38,15 @@ class Storage:
                 )
             """)
 
-    def save_request(self, request_id: str, status: str, result: dict[str, Any] | None) -> None:
+    def save_request(self, request_id: str, status: RequestStatus, result: dict[str, Any] | None) -> None:
         now = datetime.now(timezone.utc).isoformat()
         with self._connect() as conn:
             conn.execute(
                 "INSERT OR REPLACE INTO requests (request_id, created_at, status, result_json) VALUES (?, ?, ?, ?)",
-                (request_id, now, status, json.dumps(result) if result is not None else None),
+                (request_id, now, status.value, json.dumps(result) if result is not None else None),
             )
 
-    def get_request(self, request_id: str) -> dict[str, Any] | None:
+    def get_request(self, request_id: str) -> StoredRequest | None:
         with self._connect() as conn:
             row = conn.execute(
                 "SELECT request_id, created_at, status, result_json FROM requests WHERE request_id = ?",
@@ -52,12 +54,20 @@ class Storage:
             ).fetchone()
         if row is None:
             return None
-        return {
-            "request_id": row["request_id"],
-            "created_at": row["created_at"],
-            "status": row["status"],
-            "result": json.loads(row["result_json"]) if row["result_json"] else None,
-        }
+        return StoredRequest(
+            request_id=row["request_id"],
+            created_at=row["created_at"],
+            status=RequestStatus(row["status"]),
+            result=json.loads(row["result_json"]) if row["result_json"] else None,
+        )
+
+    def save_feedback(self, request_id: str, rating: int, comment: str | None = None) -> None:
+        now = datetime.now(timezone.utc).isoformat()
+        with self._connect() as conn:
+            conn.execute(
+                "INSERT INTO feedback (request_id, created_at, rating, comment) VALUES (?, ?, ?, ?)",
+                (request_id, now, rating, comment),
+            )
 
     def ping(self) -> bool:
         try:

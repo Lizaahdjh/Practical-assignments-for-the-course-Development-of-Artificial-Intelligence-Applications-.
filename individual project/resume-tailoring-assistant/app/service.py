@@ -1,5 +1,5 @@
 from app.gateway import Gateway
-from app.models import AnalyzeRequest, AnalyzeResult, StyleSuggestion
+from app.models import AnalyzeRequest, AnalyzeResult, RequestStatus, StyleSuggestion
 from app.orchestration import Orchestrator
 from app.providers import ProviderError
 from app.settings import Settings
@@ -22,7 +22,6 @@ class Service:
             log("service", request_id, event="provider_error")
             raise
 
-        # Заготовка ПР15: тут буде пост-перевірка на галюцинації, PII, тощо.
         data = result.structured or {}
         analyze_result = AnalyzeResult(
             request_id=request_id,
@@ -32,6 +31,6 @@ class Service:
             style_suggestions=[StyleSuggestion(**s) for s in data.get("style_suggestions", [])],
             interview_questions=list(data.get("interview_questions", []))[:3],
         )
-        self.storage.save_request(request_id, status="ok", result=analyze_result.model_dump())
+        self.storage.save_request(request_id, status=RequestStatus.ok, result=analyze_result.model_dump())
         log("service", request_id, event="done", score=analyze_result.match_score)
         return analyze_result

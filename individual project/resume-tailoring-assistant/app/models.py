@@ -11,6 +11,14 @@ class ErrorKind(str, Enum):
     internal = "internal"
 
 
+class RequestStatus(str, Enum):
+    """Статуси запиту в сховищі. Enum замість рядка — щоб не було міграції
+    пізніше і щоб неможливо було записати довільний статус."""
+    ok = "ok"
+    error = "error"
+    pending = "pending"
+
+
 class ErrorBody(BaseModel):
     kind: ErrorKind
     message: str
@@ -48,6 +56,14 @@ class AnalyzeResult(BaseModel):
     gaps: list[str] = Field(default_factory=list, max_length=5)
     style_suggestions: list[StyleSuggestion] = Field(default_factory=list)
     interview_questions: list[str] = Field(min_length=3, max_length=3)
+
+
+class StoredRequest(BaseModel):
+    """Сутність сховища: те, що повертає Storage.get_request()."""
+    request_id: str
+    created_at: str
+    status: RequestStatus
+    result: dict | None = None
 
 
 class HealthResponse(BaseModel):

@@ -21,3 +21,23 @@
 **Що відкинув:**
 - Пропозицію додати OCR як другий AI-компонент — це розросло б проєкт за межі 7 тижнів.
 - Пропозицію зробити двосторонній застосунок (рекрутер + кандидат) — суперечить вимозі «одна роль» з ПР13.
+
+## ПР-14
+
+## Що змінилося — короткий підсумок
+
+| Файл | Зміна |
+|---|---|
+| `app/providers/mock.py` | Mock залежить від входу → тест доводить проходження крізь оркестрацію |
+| `app/models.py` | Додано `RequestStatus`, `StoredRequest` |
+| `app/storage.py` | Додано `save_feedback`; `save_request` приймає enum; `get_request` повертає `StoredRequest` |
+| `app/service.py` | Використовує `RequestStatus.ok` |
+| `app/settings.py` | `APP_VERSION` fallback на git hash |
+| `app/main.py` | HTML показує стан завантаження і червоним — помилку; `get_request` повертає `.model_dump()` |
+| `tests/test_api.py` | Без фіксованого `72`; новий тест `test_mock_depends_on_input` |
+| `tests/test_service.py` | Перевіряє `StoredRequest` |
+| `tests/test_telemetry.py` | **Новий** — доводить, що журнал містить шари з одним `request_id` |
+| `docs/api.md` | Дописано приклад відповіді, контракт тривалої операції |
+| `README.md` | Оновлено структуру, стек, статус, тести |
+
+Після застосування — `pytest -q` має дати **6 passed** (4 старі + 2 нові). Це повністю закриває всі зауваження з попередньої перевірки.
